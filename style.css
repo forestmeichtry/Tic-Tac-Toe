@@ -1,0 +1,26 @@
+:root {
+    --backgroundColor: #222121;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--backgroundColor);
+    height: 100vh;
+}
+
+.grid {
+    display: grid;
+    background-color: antiquewhite;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    height: 50vh;
+    width: 50vh;
+    gap: 15px;
+}
+
+.gridSquare {
+    background-color: var(--backgroundColor);
+}
