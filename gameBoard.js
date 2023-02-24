@@ -1,5 +1,11 @@
 let gameBoard = [];
 
+export function clearBoard() {
+    for (let spot of gameBoard) {
+        spot = '';
+    }
+}
+
 export function addMark(symbol, spot) {
     gameBoard[spot] = symbol;
 }
