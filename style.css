@@ -1,5 +1,6 @@
 :root {
-    --backgroundColor: #222121;
+    --primaryColor: #222121;
+    --secondaryColor: antiquewhite;
 }
 
 body {
@@ -7,13 +8,13 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--backgroundColor);
+    background-color: var(--primaryColor);
     height: 100vh;
 }
 
 .grid {
     display: grid;
-    background-color: antiquewhite;
+    background-color: var(--secondaryColor);
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     height: 50vh;
@@ -21,6 +22,27 @@ body {
     gap: 15px;
 }
 
+.outerSquare {
+    background-color: var(--primaryColor);
+}
+
 .gridSquare {
-    background-color: var(--backgroundColor);
+    height: 100%;
+    background-color: var(--primaryColor);
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+}
+
+.gridSquare[data-mark='Cross'] {
+    background-color: var(--secondaryColor);
+    -webkit-mask-image: url(Assets/Cross.svg);
+    mask-image: url(Assets/Cross.svg);
+}
+
+.gridSquare[data-mark='Circle'] {
+    background-color: var(--secondaryColor);
+    -webkit-mask-image: url(Assets/Circle.svg);
+    mask-image: url(Assets/Circle.svg);
 }
