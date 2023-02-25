@@ -1,7 +1,3 @@
-import { playerClick } from "./displayController.js";
+import { initializeGame } from "./displayController.js";
 
-let gridSquares = document.querySelectorAll('.gridSquare');
-
-gridSquares.forEach((gridSquare) => {
-    gridSquare.addEventListener('click', playerClick);
-});
+initializeGame();

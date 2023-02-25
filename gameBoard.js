@@ -1,8 +1,10 @@
 let gameBoard = [];
 
-export function clearBoard() {
-    for (let square of gameBoard) {
-        square = '';
+// Sets board array to empty strings
+// called on page load to initialize the array
+export function clearBoardArray() {
+    for (let i = 0; i < 9; i++) {
+        gameBoard[i] = '';
     }
 }
 
@@ -27,13 +29,13 @@ export function checkForWinner(index) {
         if (combo.includes(parseInt(index))) {
             if (gameBoard[combo[0]] === gameBoard[combo[1]]
                  && gameBoard[combo[1]] === gameBoard[combo[2]]) {
-                return true;
+                return 'win';
             }
         }
     }
 
-    if (gameBoard.length === 9) {
-        console.log('Tie Game');
+    if (!gameBoard.includes('')) {
+        return 'tie';
     }
 
     return false;
