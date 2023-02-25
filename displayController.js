@@ -6,8 +6,7 @@ const gridSquares = document.querySelectorAll('.gridSquare');
 // Triggered on click of gridSquare elements
 function playerClick() {
     // If the square is not empty return with no action
-    if (this.dataset.mark != null) {
-        console.log('not empty');
+    if (this.dataset.mark != 'empty') {
         return;
     }
 
@@ -50,7 +49,7 @@ export function initializeGame() {
 
 function clearDisplay() {
     gridSquares.forEach((gridSquare) => {
-        gridSquare.dataset.mark = null;
+        gridSquare.dataset.mark = 'empty';
     });
 }
 
