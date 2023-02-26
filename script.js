@@ -1,3 +1,4 @@
-import { initializeGame } from "./displayController.js";
+import { animateBackground, initializeGame } from "./displayController.js";
 
 initializeGame();
+animateBackground();

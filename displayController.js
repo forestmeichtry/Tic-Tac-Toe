@@ -1,6 +1,7 @@
 import { addMark, checkForWinner, clearBoardArray } from "./gameBoard.js";
 
 let playerOneTurn = true;
+let backgroundAnimationDelay = 200;
 const gridSquares = document.querySelectorAll('.gridSquare');
 
 // Triggered on click of gridSquare elements
@@ -55,4 +56,27 @@ function clearDisplay() {
 
 function changeTurn() {
     playerOneTurn = !playerOneTurn;
+}
+
+export function animateBackground() {
+    let element = document.createElement('div');
+    element.classList.add('fallingMark');
+
+    if (Math.random() > .5) {
+        element.dataset.mark = 'Circle';
+    } else {
+        element.dataset.mark = 'Cross';
+    }
+
+    element.style.animationName = 'falling' + (Math.floor(Math.random() * 4));
+    element.style.left = (Math.random() * window.innerWidth) + 'px';
+    element.style.animationDuration = (Math.floor(Math.random() * 6) + 6) + 's';
+
+    element.addEventListener('animationend', () => {
+        element.remove();
+    });
+
+    document.body.appendChild(element);
+
+    setTimeout(animateBackground, backgroundAnimationDelay);
 }

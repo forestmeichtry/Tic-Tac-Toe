@@ -1,6 +1,8 @@
 :root {
     --primaryColor: #222121;
     --secondaryColor: antiquewhite;
+    --circleMark: url(Assets/Circle.svg);
+    --crossMark: url(Assets/Cross.svg);
 }
 
 body {
@@ -10,6 +12,7 @@ body {
     align-items: center;
     background-color: var(--primaryColor);
     height: 100vh;
+    overflow: hidden;
 }
 
 .grid {
@@ -35,14 +38,42 @@ body {
     mask-size: 100% 100%;
 }
 
-.gridSquare[data-mark='Cross'] {
+[data-mark='Cross'] {
     background-color: var(--secondaryColor);
-    -webkit-mask-image: url(Assets/Cross.svg);
-    mask-image: url(Assets/Cross.svg);
+    -webkit-mask-image: var(--crossMark);
+    mask-image: var(--crossMark);
 }
 
-.gridSquare[data-mark='Circle'] {
+[data-mark='Circle'] {
     background-color: var(--secondaryColor);
-    -webkit-mask-image: url(Assets/Circle.svg);
-    mask-image: url(Assets/Circle.svg);
+    -webkit-mask-image: var(--circleMark);
+    mask-image: var(--circleMark);
+}
+
+.fallingMark {
+    position: absolute;
+    top: -20px;
+    height: 20px;
+    width: 20px;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    animation-timing-function: linear;
+}
+
+@keyframes falling0 {
+    to {transform: translateY(calc(100vh + 20px)) rotate3d(10, 10, 4, -500deg)}
+}
+
+@keyframes falling1 {
+    to {transform: translateY(calc(100vh + 20px)) rotate3d(-2, 6, -3, 500deg);}
+}
+
+@keyframes falling2 {
+    to {transform: translateY(calc(100vh + 20px)) rotate3d(3, -5, 3, 750deg)}
+}
+
+@keyframes falling3 {
+    to {transform: translateY(calc(100vh + 20px)) rotate3d(-8, 1, 2, -600deg)}
 }
