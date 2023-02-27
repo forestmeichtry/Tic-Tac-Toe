@@ -1,4 +1,4 @@
 import { animateBackground, initializeGame } from "./displayController.js";
 
-initializeGame();
+setTimeout(initializeGame, 500);
 animateBackground();

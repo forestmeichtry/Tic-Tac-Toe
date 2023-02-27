@@ -1,8 +1,9 @@
 import { addMark, checkForWinner, clearBoardArray } from "./gameBoard.js";
 
 let playerOneTurn = true;
-let backgroundAnimationDelay = 200;
+let backgroundAnimationDelay = 100;
 const gridSquares = document.querySelectorAll('.gridSquare');
+const boardPieces = document.querySelectorAll('.boardPiece');
 
 // Triggered on click of gridSquare elements
 function playerClick() {
@@ -44,6 +45,10 @@ function gameOver(gameState) {
 export function initializeGame() {
     gridSquares.forEach((gridSquare) => {
         gridSquare.addEventListener('click', playerClick);
+    });
+
+    boardPieces.forEach((piece) => {
+        piece.classList.add('animation');
     });
     clearBoardArray();
 }

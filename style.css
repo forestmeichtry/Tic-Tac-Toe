@@ -3,6 +3,8 @@
     --secondaryColor: antiquewhite;
     --circleMark: url(Assets/Circle.svg);
     --crossMark: url(Assets/Cross.svg);
+    --squareHeight: calc(calc(50vh - 30px) / 3);
+    --sideGap: calc(calc(100vw - 50vh) / 2);
 }
 
 body {
@@ -15,9 +17,80 @@ body {
     overflow: hidden;
 }
 
+.boardPiece {
+    position: absolute;
+    background-color: var(--secondaryColor);
+}
+
+.animation {
+    animation-duration: 1.5s;
+    animation-timing-function: cubic-bezier(0.29, 0.74, 0.4, 1.11);
+    animation-fill-mode: forwards;
+}
+
+.top {
+    top: calc(25vh + var(--squareHeight));
+    left: -50vh;
+    width: 50vh;
+    height: 15px;
+}
+
+.top.animation {
+    animation-name: offscreenLeft;
+}
+
+@keyframes offscreenLeft {
+    to {left: var(--sideGap);}
+}
+
+.bottom {
+    bottom: calc(25vh + var(--squareHeight));
+    right: -50vh;
+    width: 50vh;
+    height: 15px;
+}
+
+.bottom.animation {
+    animation-name: offscreenRight;
+}
+
+@keyframes offscreenRight {
+    to {right: var(--sideGap);}
+}
+
+.left {
+    left: calc(var(--sideGap) + var(--squareHeight));
+    top: -50vh;
+    height: 50vh;
+    width: 15px;
+}
+
+.left.animation {
+    animation-name: offscreenTop;
+}
+
+@keyframes offscreenTop {
+    to {top: 25vh;}
+}
+
+.right {
+    right: calc(var(--sideGap) + var(--squareHeight));
+    bottom: -50vh;
+    height: 50vh;
+    width: 15px;
+}
+
+.right.animation {
+    animation-name: offscreenBottom;
+}
+
+@keyframes offscreenBottom {
+    to {bottom: 25vh;}
+}
+
 .grid {
     display: grid;
-    background-color: var(--secondaryColor);
+    background-color: var(--primaryColor);
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     height: 50vh;
