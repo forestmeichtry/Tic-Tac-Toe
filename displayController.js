@@ -1,7 +1,7 @@
 import { addMark, checkForWinner, clearBoardArray } from "./gameBoard.js";
 
 let playerOneTurn = true;
-let backgroundAnimationDelay = 100;
+let backgroundAnimationDelay = 150;
 const gridSquares = document.querySelectorAll('.gridSquare');
 const boardPieces = document.querySelectorAll('.boardPiece');
 
@@ -74,7 +74,7 @@ export function animateBackground() {
     }
 
     element.style.animationName = 'falling' + (Math.floor(Math.random() * 4));
-    element.style.left = (Math.random() * window.innerWidth) + 'px';
+    element.style.left = (Math.random() * window.visualViewport.width) + 'px';
     element.style.animationDuration = (Math.floor(Math.random() * 6) + 6) + 's';
 
     element.addEventListener('animationend', () => {
