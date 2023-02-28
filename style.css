@@ -222,6 +222,10 @@ body {
 }
 
 @media screen and (max-width: 999px) {
+    .grid .boardPiece {
+        position: fixed;
+    }
+
     #titleContainer {
         flex-direction: column;
         height: 50vh;
