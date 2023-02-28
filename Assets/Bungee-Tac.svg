@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   version="1.1"
+   width="359"
+   height="208"
+   id="svg36"
+   sodipodi:docname="Bungee-Tac.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview38"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="3.6490251"
+     inkscape:cx="179.5"
+     inkscape:cy="104.27443"
+     inkscape:window-width="2486"
+     inkscape:window-height="1376"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg36" />
+  <defs
+     id="defs14">
+    <path
+       id="shade-notdef"
+       d="M735 -159C749 -159 760 -155 766 -149L896 -41C905 -33 910 -22 910 -4V724C910 756 896 770 864 770H136C122 770 111 767 104 761L-25 652C-34 644 -39 633 -39 615V-113C-39 -145 -25 -159 7 -159ZM711 591V20H160V591Z" />
+    <path
+       id="shade-e100"
+       d="M309 388V378H293V417C305 410 309 400 309 388ZM279 -1C288 7 293 18 293 36V66H309V-73C309 -105 323 -119 355 -119H507C521 -119 532 -115 538 -109L668 -1C677 7 682 18 682 36V531C682 656 628 745 367 745C236 745 159 722 114 684L-16 576C-61 538 -75 485 -75 422V-73C-75 -105 -61 -119 -29 -119H118C132 -119 143 -115 149 -109ZM368 747ZM368 0Z" />
+    <path
+       id="shade-54"
+       d="M280 -119C294 -119 305 -115 311 -109L441 -1C450 7 455 18 455 36V408H463C477 408 488 412 494 418L624 526C633 534 638 545 638 563V684C638 716 624 730 592 730H64C50 730 39 727 32 721L-97 612C-106 604 -111 593 -111 575V454C-111 422 -97 408 -65 408H72V-73C72 -105 86 -119 118 -119Z" />
+    <path
+       id="shade-63"
+       d="M419 -119C433 -119 444 -115 450 -109L580 -1C589 7 594 18 594 36V155C594 187 580 201 548 201H347C314 201 296 211 296 239V408H419C433 408 444 412 450 418L580 526C589 534 594 545 594 563V684C594 716 580 730 548 730H304C217 730 153 713 112 678L-18 569C-60 533 -81 480 -81 406V125C-81 -20 -1 -119 175 -119Z" />
+    <path
+       id="regular-notdef"
+       d="M900 -4V724C900 749 889 760 864 760H136C111 760 100 749 100 724V-4C100 -29 111 -40 136 -40H864C889 -40 900 -29 900 -4ZM850 10H150V710H850Z" />
+    <path
+       id="regular-e100"
+       d="M283 497C283 524 295 544 366 544C436 544 448 524 448 497V368H283ZM283 36V185H448V36C448 11 459 0 484 0H636C661 0 672 11 672 36V531C672 652 616 735 367 735C119 735 64 652 64 531V36C64 11 75 0 100 0H247C272 0 283 11 283 36ZM368 747ZM368 0Z" />
+    <path
+       id="regular-54"
+       d="M409 0C434 0 445 11 445 36V527H592C617 527 628 538 628 563V684C628 709 617 720 592 720H64C39 720 28 709 28 684V563C28 538 39 527 64 527H211V36C211 11 222 0 247 0Z" />
+    <path
+       id="regular-63"
+       d="M548 0C573 0 584 11 584 36V155C584 180 573 191 548 191H347C305 191 286 206 286 239V477C286 511 305 527 347 527H548C573 527 584 538 584 563V684C584 709 573 720 548 720H304C136 720 58 655 58 515V204C58 65 136 0 304 0Z" />
+    <path
+       id="inline-notdef"
+       d="M120 -20H880V740H120ZM870 -10H130V730H870Z" />
+    <path
+       id="inline-e100"
+       d="M184 507C184 582 219 632 368 632C517 632 555 582 555 507V281H184ZM555 90H565V507C565 588 525 642 368 642C211 642 174 588 174 507V90H184V271H555ZM368 747ZM368 0Z" />
+    <path
+       id="inline-54"
+       d="M323 90H333V620H538V630H118V620H323Z" />
+    <path
+       id="inline-63"
+       d="M493 100H326C206 100 176 132 176 219V499C176 588 208 620 326 620H493V630H326C198 630 166 594 166 499V219C166 126 196 90 326 90H493Z" />
+  </defs>
+  <!-- Text: Tac (3 bytes) -->
+  <!-- T -->
+  <use
+     transform="translate(37.76 150.08) scale(0.144 -0.144)"
+     xlink:href="#shade-54"
+     style="stroke:none;fill:#090400"
+     id="use18" />
+  <!-- a -->
+  <use
+     transform="translate(130.784 150.08) scale(0.144 -0.144)"
+     xlink:href="#shade-e100"
+     style="stroke:none;fill:#090400"
+     id="use20" />
+  <!-- c -->
+  <use
+     transform="translate(236.768 150.08) scale(0.144 -0.144)"
+     xlink:href="#shade-63"
+     style="stroke:none;fill:#090400"
+     id="use22" />
+  <!-- T -->
+  <use
+     transform="translate(37.76 150.08) scale(0.144 -0.144)"
+     xlink:href="#regular-54"
+     style="stroke:none;fill:#feedd6"
+     id="use24" />
+  <!-- a -->
+  <use
+     transform="translate(130.784 150.08) scale(0.144 -0.144)"
+     xlink:href="#regular-e100"
+     style="stroke:none;fill:#feedd6"
+     id="use26" />
+  <!-- c -->
+  <use
+     transform="translate(236.768 150.08) scale(0.144 -0.144)"
+     xlink:href="#regular-63"
+     style="stroke:none;fill:#feedd6"
+     id="use28" />
+  <!-- T -->
+  <use
+     transform="translate(37.76 150.08) scale(0.144 -0.144)"
+     xlink:href="#inline-54"
+     style="stroke:none;fill:#000000"
+     id="use30" />
+  <!-- a -->
+  <use
+     transform="translate(130.784 150.08) scale(0.144 -0.144)"
+     xlink:href="#inline-e100"
+     style="stroke:none;fill:#000000"
+     id="use32" />
+  <!-- c -->
+  <use
+     transform="translate(236.768 150.08) scale(0.144 -0.144)"
+     xlink:href="#inline-63"
+     style="stroke:none;fill:#000000"
+     id="use34" />
+</svg>
