@@ -5,6 +5,7 @@ let backgroundAnimationDelay = 150;
 const gridSquares = document.querySelectorAll('.gridSquare');
 const boardPieces = document.querySelectorAll('.boardPiece');
 const startScreenElements = document.querySelectorAll('.startScreen');
+const root = document.querySelector(':root');
 
 // Triggered on click of gridSquare elements
 function playerClick() {
@@ -29,6 +30,10 @@ function playerClick() {
 
 // Triggered on win / tie
 // Announce the game result in console and clears the board
+// TODO: Make combo / board flash on win / tie
+// then shift grid into box and display win message
+// TODO: Detect tie gamestate before board is full
+// if every possible combo is contested then initiate gameOver
 function gameOver(gameState) {
     if (gameState === 'win') {
         let winner = playerOneTurn ? 'Player 1' : 'Player 2';
@@ -92,4 +97,11 @@ export function animateBackground() {
     document.body.appendChild(element);
 
     setTimeout(animateBackground, backgroundAnimationDelay);
+}
+
+export function toggleLightMode() {
+    let rs = getComputedStyle(root);
+    let temp = rs.getPropertyValue('--primaryColor');
+    root.style.setProperty('--primaryColor', rs.getPropertyValue('--secondaryColor'));
+    root.style.setProperty('--secondaryColor', temp);
 }

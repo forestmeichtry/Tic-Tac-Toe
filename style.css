@@ -237,3 +237,9 @@ body {
         bottom: 15vh;
     }
 }
+
+#lightMode {
+    position: absolute;
+    right: 10vw;
+    bottom: 10vh;
+}
