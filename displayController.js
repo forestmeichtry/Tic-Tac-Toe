@@ -4,6 +4,7 @@ let playerOneTurn = true;
 let backgroundAnimationDelay = 150;
 const gridSquares = document.querySelectorAll('.gridSquare');
 const boardPieces = document.querySelectorAll('.boardPiece');
+const startScreenElements = document.querySelectorAll('.startScreen');
 
 // Triggered on click of gridSquare elements
 function playerClick() {
@@ -43,12 +44,19 @@ function gameOver(gameState) {
 // Called once on page load, attaches event listeners to each square
 // and initializes the board array
 export function initializeGame() {
+    startScreenElements.forEach((element) => {
+        element.classList.add('fadeout');
+        element.addEventListener('animationend', () => {
+            element.style.display = 'none';
+        });
+    });
+
     gridSquares.forEach((gridSquare) => {
         gridSquare.addEventListener('click', playerClick);
     });
 
     boardPieces.forEach((piece) => {
-        piece.classList.add('animation');
+        piece.classList.add('slide-in');
     });
     clearBoardArray();
 }

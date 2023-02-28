@@ -3,43 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
     <title>Tic Tac Toe</title>
     <script type="module" src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Source+Code+Pro:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="boardPiece top before"></div>
-    <div class="boardPiece bottom before"></div>
-    <div class="boardPiece left before"></div>
-    <div class="boardPiece right before"></div>
-    <div class="grid">
-        <div class="outerSquare">
-            <div class="gridSquare" data-index="0" data-mark="empty"></div>
+    <div class="wrapper">
+        <div class="boardPiece top before"></div>
+        <div class="boardPiece bottom before"></div>
+        <div class="boardPiece left before"></div>
+        <div class="boardPiece right before"></div>
+        <div id="titleContainer" class="startScreen">
+            <div id="Tic" class="title" alt="Tic"></div>
+            <div id="Tac" class="title" alt="Tac"></div>
+            <div id="Toe" class="title" alt="Toe"></div>
         </div>
-        <div class="outerSquare">
-            <div class="gridSquare" data-index="1" data-mark="empty"></div>
-        </div>
-        <div class="outerSquare">
-            <div class="gridSquare" data-index="2" data-mark="empty"></div>
-        </div>
-        <div class="outerSquare">
-            <div class="gridSquare" data-index="3" data-mark="empty"></div>
-        </div>
-        <div class="outerSquare">
-            <div class="gridSquare" data-index="4" data-mark="empty"></div>
-        </div>
-        <div class="outerSquare">
-            <div class="gridSquare" data-index="5" data-mark="empty"></div>
-        </div>
-        <div class="outerSquare">
-            <div class="gridSquare" data-index="6" data-mark="empty"></div>
-        </div>
-        <div class="outerSquare">
-            <div class="gridSquare" data-index="7" data-mark="empty"></div>
-        </div>
-        <div class="outerSquare">
-            <div class="gridSquare" data-index="8" data-mark="empty"></div>
+        <button id="startButton" class="startScreen">Start</button>
+        <div class="grid">
+            <div class="outerSquare">
+                <div class="gridSquare" data-index="0" data-mark="empty"></div>
+            </div>
+            <div class="outerSquare">
+                <div class="gridSquare" data-index="1" data-mark="empty"></div>
+            </div>
+            <div class="outerSquare">
+                <div class="gridSquare" data-index="2" data-mark="empty"></div>
+            </div>
+            <div class="outerSquare">
+                <div class="gridSquare" data-index="3" data-mark="empty"></div>
+            </div>
+            <div class="outerSquare">
+                <div class="gridSquare" data-index="4" data-mark="empty"></div>
+            </div>
+            <div class="outerSquare">
+                <div class="gridSquare" data-index="5" data-mark="empty"></div>
+            </div>
+            <div class="outerSquare">
+                <div class="gridSquare" data-index="6" data-mark="empty"></div>
+            </div>
+            <div class="outerSquare">
+                <div class="gridSquare" data-index="7" data-mark="empty"></div>
+            </div>
+            <div class="outerSquare">
+                <div class="gridSquare" data-index="8" data-mark="empty"></div>
+            </div>
         </div>
     </div>
 </body>

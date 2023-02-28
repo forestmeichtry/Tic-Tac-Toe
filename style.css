@@ -9,12 +9,67 @@
 
 body {
     margin: 0;
+    background-color: var(--primaryColor);
+    overflow: hidden;
+}
+
+.wrapper {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--primaryColor);
     height: 100vh;
     overflow: hidden;
+}
+
+#titleContainer {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 1000px;
+    height: 200px;
+}
+
+.title {
+    z-index: 100;
+    flex: auto;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#Tic {
+    background-image: url(Assets/Bungee-Tic.svg);
+}
+
+#Tac {
+    background-image: url(Assets/Bungee-Tac.svg);
+}
+
+#Toe {
+    background-image: url(Assets/Bungee-Toe.svg);
+}
+
+#startButton {
+    position: absolute;
+    height: 60px;
+    width: 180px;
+    bottom: 20vh;
+    box-sizing: border-box;
+    color: var(--primaryColor);
+    font-family: 'Source Code Pro', monospace;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: var(--secondaryColor);
+    border: 2px solid black;
+    border-radius: 10px;
+    transition: .2s;
+}
+
+#startButton:hover {
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(250,235,215,0.57);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(250,235,215,0.57);
+    box-shadow: 0px 0px 10px 0px rgba(250,235,215,0.57);
 }
 
 .boardPiece {
@@ -22,8 +77,9 @@ body {
     background-color: var(--secondaryColor);
 }
 
-.animation {
+.slide-in {
     animation-duration: 1.5s;
+    animation-delay: .5s;
     animation-timing-function: cubic-bezier(0.29, 0.74, 0.4, 1.11);
     animation-fill-mode: forwards;
 }
@@ -35,7 +91,7 @@ body {
     height: 15px;
 }
 
-.top.animation {
+.top.slide-in {
     animation-name: offscreenLeft;
 }
 
@@ -50,7 +106,7 @@ body {
     height: 15px;
 }
 
-.bottom.animation {
+.bottom.slide-in {
     animation-name: offscreenRight;
 }
 
@@ -65,7 +121,7 @@ body {
     width: 15px;
 }
 
-.left.animation {
+.left.slide-in {
     animation-name: offscreenTop;
 }
 
@@ -80,7 +136,7 @@ body {
     width: 15px;
 }
 
-.right.animation {
+.right.slide-in {
     animation-name: offscreenBottom;
 }
 
@@ -149,4 +205,31 @@ body {
 
 @keyframes falling3 {
     to {transform: translateY(calc(100vh + 20px)) rotate3d(-8, 1, 2, -600deg)}
+}
+
+.startScreen {
+    animation-duration: 1.2s;
+    animation-timing-function: ease-out;
+}
+
+.fadeout {
+    animation-name: fadeout;
+}
+
+@keyframes fadeout {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+@media screen and (max-width: 999px) {
+    #titleContainer {
+        flex-direction: column;
+        height: 50vh;
+        width: 50vw;
+        top: 15vh;
+    }
+
+    #startButton {
+        bottom: 15vh;
+    }
 }
