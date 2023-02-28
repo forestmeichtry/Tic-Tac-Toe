@@ -30,10 +30,6 @@ function playerClick() {
 
 // Triggered on win / tie
 // Announce the game result in console and clears the board
-// TODO: Make combo / board flash on win / tie
-// then shift grid into box and display win message
-// TODO: Detect tie gamestate before board is full
-// if every possible combo is contested then initiate gameOver
 function gameOver(gameState) {
     if (gameState === 'win') {
         let winner = playerOneTurn ? 'Player 1' : 'Player 2';
@@ -46,8 +42,9 @@ function gameOver(gameState) {
     clearDisplay();
 }
 
-// Called once on page load, attaches event listeners to each square
-// and initializes the board array
+// Called on game start 
+// Attaches event listeners to game elements 
+// Initializes the board array
 export function initializeGame() {
     startScreenElements.forEach((element) => {
         element.classList.add('fadeout');
@@ -76,6 +73,8 @@ function changeTurn() {
     playerOneTurn = !playerOneTurn;
 }
 
+// Initially called on page load, then calls itself after a delay (backgroundAnimationDelay)
+// Creates a div with a randomly assigned x-position and falling animation
 export function animateBackground() {
     let element = document.createElement('div');
     element.classList.add('fallingMark');
@@ -90,6 +89,7 @@ export function animateBackground() {
     element.style.left = (Math.random() * window.visualViewport.width) + 'px';
     element.style.animationDuration = (Math.floor(Math.random() * 6) + 6) + 's';
 
+    // An event listener is attached to delete the element when it reaches the bottom of the screen
     element.addEventListener('animationend', () => {
         element.remove();
     });
@@ -99,6 +99,7 @@ export function animateBackground() {
     setTimeout(animateBackground, backgroundAnimationDelay);
 }
 
+// Toggles light mode by swapping primary and secondary color variables in root
 export function toggleLightMode() {
     let rs = getComputedStyle(root);
     let temp = rs.getPropertyValue('--primaryColor');
