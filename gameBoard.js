@@ -13,7 +13,6 @@ export function addMark(symbol, index) {
 }
 
 export function checkForWinner(index) {
-
     const winningCombinations = [
         [0, 1, 2],
         [3, 4, 5],
