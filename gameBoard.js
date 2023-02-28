@@ -8,6 +8,7 @@ export function clearBoardArray() {
     }
 }
 
+// Symbol value  = 'Cross' or 'Circle'
 export function addMark(symbol, index) {
     gameBoard[index] = symbol;
 }
@@ -24,16 +25,27 @@ export function checkForWinner(index) {
         [2, 4, 6]
     ];
 
+    let tieGame = true;
     for (let combo of winningCombinations) {
+        let comboVal = [
+            gameBoard[combo[0]], 
+            gameBoard[combo[1]], 
+            gameBoard[combo[2]]
+        ];
+            
         if (combo.includes(parseInt(index))) {
-            if (gameBoard[combo[0]] === gameBoard[combo[1]]
-                 && gameBoard[combo[1]] === gameBoard[combo[2]]) {
+            if (comboVal[0] === comboVal[1]
+                 && comboVal[1] === comboVal[2]) {
                 return 'win';
             }
         }
+
+        if (!comboVal.includes('Cross') || !comboVal.includes('Circle')) {
+            tieGame = false;
+        }
     }
 
-    if (!gameBoard.includes('')) {
+    if (tieGame) {
         return 'tie';
     }
 
