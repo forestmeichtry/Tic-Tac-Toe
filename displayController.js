@@ -31,15 +31,28 @@ function playerClick() {
 // Triggered on win / tie
 // Announce the game result in console and clears the board
 function gameOver(gameState) {
-    if (gameState === 'win') {
-        let winner = playerOneTurn ? 'Player 1' : 'Player 2';
-        console.log(winner + ' wins!');
+    if (gameState === 'tie') {
+        // Tie board flash
     } else {
-        console.log('Tie game!');
+        let winner = playerOneTurn ? 'Player 1' : 'Player 2';
+        for (let square of gridSquares) {
+            console.log(gameState);
+            console.log(typeof square.dataset.index);
+            if (gameState.includes(parseInt(square.dataset.index))) {
+                console.log('Winning Square');
+                square.classList.add('greenFlash');
+
+                square.addEventListener('animationend', () => {
+                    square.classList.remove('greenFlash');
+                }, { once: true });
+            }
+        }
     }
 
-    clearBoardArray();
-    clearDisplay();
+    setTimeout(() => {
+        clearBoardArray();
+        clearDisplay();
+    }, 2100);
 }
 
 // Called on game start 
@@ -49,8 +62,9 @@ export function initializeGame() {
     startScreenElements.forEach((element) => {
         element.classList.add('fadeout');
         element.addEventListener('animationend', () => {
+            element.classList.remove('fadeout');
             element.style.display = 'none';
-        });
+        }, { once: true });
     });
 
     gridSquares.forEach((gridSquare) => {
@@ -92,7 +106,7 @@ export function animateBackground() {
     // An event listener is attached to delete the element when it reaches the bottom of the screen
     element.addEventListener('animationend', () => {
         element.remove();
-    });
+    }, { once: true });
 
     document.body.appendChild(element);
 
@@ -102,6 +116,7 @@ export function animateBackground() {
 // Toggles light mode by swapping primary and secondary color variables in root
 export function toggleLightMode() {
     let rs = getComputedStyle(root);
+
     let temp = rs.getPropertyValue('--primaryColor');
     root.style.setProperty('--primaryColor', rs.getPropertyValue('--secondaryColor'));
     root.style.setProperty('--secondaryColor', temp);

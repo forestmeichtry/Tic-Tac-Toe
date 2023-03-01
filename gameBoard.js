@@ -36,7 +36,7 @@ export function checkForWinner(index) {
         if (combo.includes(parseInt(index))) {
             if (comboVal[0] === comboVal[1]
                  && comboVal[1] === comboVal[2]) {
-                return 'win';
+                return combo;
             }
         }
 
