@@ -75,6 +75,7 @@ body {
 .boardPiece {
     position: absolute;
     background-color: var(--secondaryColor);
+    transition: .7s;
 }
 
 .slide-in {
@@ -92,6 +93,10 @@ body {
 
 .top.offscreen {
     left: -50vh;
+}
+
+.top.box {
+    top: 25vh;
 }
 
 .top.slide-in {
@@ -112,6 +117,10 @@ body {
     right: -50vh;
 }
 
+.bottom.box {
+    bottom: 25vh;
+}
+
 .bottom.slide-in {
     animation-name: offscreenRight;
 }
@@ -130,6 +139,10 @@ body {
     top: -50vh;
 }
 
+.left.box {
+    left: var(--sideGap);
+}
+
 .left.slide-in {
     animation-name: offscreenTop;
 }
@@ -146,6 +159,10 @@ body {
 
 .right.offscreen {
     bottom: -50vh;
+}
+
+.right.box {
+    right: var(--sideGap);
 }
 
 .right.slide-in {

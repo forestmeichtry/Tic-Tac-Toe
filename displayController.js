@@ -92,9 +92,14 @@ function clearDisplay() {
         gridSquare.addEventListener('animationend', () => {
             gridSquare.classList.remove('fadeout');
             gridSquare.dataset.mark = 'empty';
-            lockGrid = false;
         }, { once: true });
     });
+}
+
+function toggleBoxMode() {
+    for (let boardPiece of boardPieces) {
+        boardPiece.classList.toggle('box');
+    }
 }
 
 function changeTurn() {
@@ -129,10 +134,9 @@ export function animateBackground() {
 
 // Toggles light mode by swapping primary and secondary color variables in root
 export function toggleLightMode() {
-    gameOver('tie');
-    // let rs = getComputedStyle(root);
+    let rs = getComputedStyle(root);
 
-    // let temp = rs.getPropertyValue('--primaryColor');
-    // root.style.setProperty('--primaryColor', rs.getPropertyValue('--secondaryColor'));
-    // root.style.setProperty('--secondaryColor', temp);
+    let temp = rs.getPropertyValue('--primaryColor');
+    root.style.setProperty('--primaryColor', rs.getPropertyValue('--secondaryColor'));
+    root.style.setProperty('--secondaryColor', temp);
 }
