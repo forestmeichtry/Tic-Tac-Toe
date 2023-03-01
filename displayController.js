@@ -137,8 +137,6 @@ function typeMessage(message) {
     }
 }
 
-// TODO: Message display, user :after to place a cursor
-// then add message gradually
 function toggleBoxMode() {
     for (let boardPiece of boardPieces) {
         boardPiece.classList.toggle('box');

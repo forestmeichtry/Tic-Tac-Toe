@@ -8,5 +8,5 @@ lightModeButton.addEventListener('click', toggleLightMode);
 
 animateBackground();
 
-// TODO: Make combo / board flash on win / tie
-// then shift grid into box and display win message
+// TODO: add slider for background density
+// Create better light mode toggle
