@@ -3,14 +3,17 @@ import { addMark, checkForWinner, clearBoardArray } from "./gameBoard.js";
 let playerOneTurn = true;
 let lockGrid = false;
 let backgroundAnimationDelay = 150;
+let boxMode = false;
 const gridSquares = document.querySelectorAll('.gridSquare');
 const boardPieces = document.querySelectorAll('.boardPiece');
 const startScreenElements = document.querySelectorAll('.startScreen');
+const box = document.querySelector('.boxWrapper');
 const root = document.querySelector(':root');
 
 // Triggered on click of gridSquare elements
 function playerClick() {
     // If the square is not empty return with no action
+    // Also returns if player input is locked
     if (this.dataset.mark != 'empty' || lockGrid) {
         return;
     }
@@ -57,7 +60,7 @@ function gameOver(gameState) {
     setTimeout(() => {
         clearBoardArray();
         clearDisplay();
-    }, 2200);
+    }, 1500);
 }
 
 // Called on game start 
@@ -94,13 +97,38 @@ function clearDisplay() {
             gridSquare.dataset.mark = 'empty';
         }, { once: true });
     });
+
+    setTimeout(() => {
+        toggleBoxMode();
+    }, 500);
 }
 
+// TODO: Message display, user :after to place a cursor
+// then add message gradually
 function toggleBoxMode() {
     for (let boardPiece of boardPieces) {
         boardPiece.classList.toggle('box');
     }
+
+
+    if (boxMode) {
+        box.classList.toggle('invisible');
+        setTimeout(() => {
+            box.classList.toggle('hidden');
+        }, 1000);
+    } else {
+        box.classList.toggle('hidden');
+        setTimeout(() => {
+            box.classList.toggle('invisible');
+        }, 10);
+    }
+
+    boxMode = !boxMode;
 }
+
+// FOR TESTING
+const boxButton = document.querySelector('#boxMode');
+boxButton.addEventListener('click', toggleBoxMode);
 
 function changeTurn() {
     playerOneTurn = !playerOneTurn;
