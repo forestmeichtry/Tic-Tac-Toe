@@ -36,7 +36,9 @@ function playerClick() {
 // Announce the game result in console and clears the board
 function gameOver(gameState) {
     lockGrid = true;
+    let winner;
     if (gameState === 'tie') {
+        winner = 'tie';
         for (let boardPiece of boardPieces) {
             boardPiece.classList.add('redFlash');
 
@@ -45,7 +47,7 @@ function gameOver(gameState) {
             }, { once: true });
         }
     } else {
-        let winner = playerOneTurn ? 'Player 1' : 'Player 2';
+        winner = playerOneTurn ? 'Player 1' : 'Player 2';
         for (let square of gridSquares) {
             if (gameState.includes(parseInt(square.dataset.index))) {
                 square.classList.add('greenFlash');
@@ -61,6 +63,14 @@ function gameOver(gameState) {
         clearBoardArray();
         clearDisplay();
     }, 1500);
+
+    setTimeout(() => {
+        toggleBoxMode();
+    }, 2000);
+
+    setTimeout(() => {
+        displayMessage(winner);
+    }, 3000);
 }
 
 // Called on game start 
@@ -97,10 +107,34 @@ function clearDisplay() {
             gridSquare.dataset.mark = 'empty';
         }, { once: true });
     });
+}
 
+function displayMessage(winner) {
+    let playAgain = 'Play again?'
+    let message;
+    if (winner === 'tie') {
+        message = "It's a Tie!";
+    } else {
+        message = winner + ' wins!';
+        
+    }
+    
+    typeMessage(message);
     setTimeout(() => {
-        toggleBoxMode();
-    }, 500);
+        box.textContent = box.textContent + '\r\n\r\n';
+        typeMessage('Play again?');
+    }, message.length * 150);
+}
+
+function typeMessage(message) {
+    box.textContent = box.textContent + message[0];
+
+    if (message.length > 1) {
+        let delay = (Math.random() * 100) + 50;
+        setTimeout(() => {
+            typeMessage(message.substring(1));
+        }, delay);
+    }
 }
 
 // TODO: Message display, user :after to place a cursor
@@ -121,6 +155,9 @@ function toggleBoxMode() {
         setTimeout(() => {
             box.classList.toggle('invisible');
         }, 10);
+        setTimeout(() => {
+            box.classList.toggle('cursor');
+        }, 1010);
     }
 
     boxMode = !boxMode;
@@ -169,9 +206,13 @@ export function toggleLightMode() {
 
     let rs = getComputedStyle(root);
 
-    let temp = rs.getPropertyValue('--primaryColor');
+    let tempColor = rs.getPropertyValue('--primaryColor');
     root.style.setProperty('--primaryColor', rs.getPropertyValue('--secondaryColor'));
-    root.style.setProperty('--secondaryColor', temp);
+    root.style.setProperty('--secondaryColor', tempColor);
+
+    let tempRGB = rs.getPropertyValue('--primaryRGB');
+    root.style.setProperty('--primaryRGB', rs.getPropertyValue('--secondaryRGB'));
+    root.style.setProperty('--secondaryRGB', tempRGB);
 
     setTimeout(() => {
         box.style.transition = '1s';
