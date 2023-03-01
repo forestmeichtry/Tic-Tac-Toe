@@ -162,9 +162,21 @@ export function animateBackground() {
 
 // Toggles light mode by swapping primary and secondary color variables in root
 export function toggleLightMode() {
+    box.style.transition = 'none';
+    for (let boardPiece of boardPieces) {
+        boardPiece.style.transition = 'none';
+    }
+
     let rs = getComputedStyle(root);
 
     let temp = rs.getPropertyValue('--primaryColor');
     root.style.setProperty('--primaryColor', rs.getPropertyValue('--secondaryColor'));
     root.style.setProperty('--secondaryColor', temp);
+
+    setTimeout(() => {
+        box.style.transition = '1s';
+        for (let boardPiece of boardPieces) {
+            boardPiece.style.transition = '1s';
+        }
+    }, 10);
 }
