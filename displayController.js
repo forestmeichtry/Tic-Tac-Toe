@@ -52,7 +52,7 @@ function gameOver(gameState) {
     setTimeout(() => {
         clearBoardArray();
         clearDisplay();
-    }, 2100);
+    }, 2200);
 }
 
 // Called on game start 
@@ -79,7 +79,11 @@ export function initializeGame() {
 
 function clearDisplay() {
     gridSquares.forEach((gridSquare) => {
-        gridSquare.dataset.mark = 'empty';
+        gridSquare.classList.add('fadeout');
+        gridSquare.addEventListener('animationend', () => {
+            gridSquare.classList.remove('fadeout');
+            gridSquare.dataset.mark = 'empty';
+        }, { once: true });
     });
 }
 
