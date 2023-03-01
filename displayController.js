@@ -1,6 +1,7 @@
 import { addMark, checkForWinner, clearBoardArray } from "./gameBoard.js";
 
 let playerOneTurn = true;
+let lockGrid = false;
 let backgroundAnimationDelay = 150;
 const gridSquares = document.querySelectorAll('.gridSquare');
 const boardPieces = document.querySelectorAll('.boardPiece');
@@ -10,7 +11,7 @@ const root = document.querySelector(':root');
 // Triggered on click of gridSquare elements
 function playerClick() {
     // If the square is not empty return with no action
-    if (this.dataset.mark != 'empty') {
+    if (this.dataset.mark != 'empty' || lockGrid) {
         return;
     }
 
@@ -31,6 +32,7 @@ function playerClick() {
 // Triggered on win / tie
 // Announce the game result in console and clears the board
 function gameOver(gameState) {
+    lockGrid = true;
     if (gameState === 'tie') {
         for (let boardPiece of boardPieces) {
             boardPiece.classList.add('redFlash');
@@ -90,6 +92,7 @@ function clearDisplay() {
         gridSquare.addEventListener('animationend', () => {
             gridSquare.classList.remove('fadeout');
             gridSquare.dataset.mark = 'empty';
+            lockGrid = false;
         }, { once: true });
     });
 }
