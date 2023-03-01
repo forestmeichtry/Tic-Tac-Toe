@@ -32,14 +32,17 @@ function playerClick() {
 // Announce the game result in console and clears the board
 function gameOver(gameState) {
     if (gameState === 'tie') {
-        // Tie board flash
+        for (let boardPiece of boardPieces) {
+            boardPiece.classList.add('redFlash');
+
+            boardPiece.addEventListener('animationend', () => {
+                boardPiece.classList.remove('redFlash');
+            }, { once: true });
+        }
     } else {
         let winner = playerOneTurn ? 'Player 1' : 'Player 2';
         for (let square of gridSquares) {
-            console.log(gameState);
-            console.log(typeof square.dataset.index);
             if (gameState.includes(parseInt(square.dataset.index))) {
-                console.log('Winning Square');
                 square.classList.add('greenFlash');
 
                 square.addEventListener('animationend', () => {
@@ -73,6 +76,10 @@ export function initializeGame() {
 
     boardPieces.forEach((piece) => {
         piece.classList.add('slide-in');
+        piece.addEventListener('animationend', () => {
+            piece.classList.remove('offscreen');
+            piece.classList.remove('slide-in');
+        }, { once: true });
     });
     clearBoardArray();
 }
@@ -119,9 +126,10 @@ export function animateBackground() {
 
 // Toggles light mode by swapping primary and secondary color variables in root
 export function toggleLightMode() {
-    let rs = getComputedStyle(root);
+    gameOver('tie');
+    // let rs = getComputedStyle(root);
 
-    let temp = rs.getPropertyValue('--primaryColor');
-    root.style.setProperty('--primaryColor', rs.getPropertyValue('--secondaryColor'));
-    root.style.setProperty('--secondaryColor', temp);
+    // let temp = rs.getPropertyValue('--primaryColor');
+    // root.style.setProperty('--primaryColor', rs.getPropertyValue('--secondaryColor'));
+    // root.style.setProperty('--secondaryColor', temp);
 }

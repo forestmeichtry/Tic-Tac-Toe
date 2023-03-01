@@ -86,9 +86,12 @@ body {
 
 .top {
     top: calc(25vh + var(--squareHeight));
-    left: -50vh;
     width: 50vh;
     height: 15px;
+}
+
+.top.offscreen {
+    left: -50vh;
 }
 
 .top.slide-in {
@@ -101,9 +104,12 @@ body {
 
 .bottom {
     bottom: calc(25vh + var(--squareHeight));
-    right: -50vh;
     width: 50vh;
     height: 15px;
+}
+
+.bottom.offscreen {
+    right: -50vh;
 }
 
 .bottom.slide-in {
@@ -116,9 +122,12 @@ body {
 
 .left {
     left: calc(var(--sideGap) + var(--squareHeight));
-    top: -50vh;
     height: 50vh;
     width: 15px;
+}
+
+.left.offscreen {
+    top: -50vh;
 }
 
 .left.slide-in {
@@ -131,9 +140,12 @@ body {
 
 .right {
     right: calc(var(--sideGap) + var(--squareHeight));
-    bottom: -50vh;
     height: 50vh;
     width: 15px;
+}
+
+.right.offscreen {
+    bottom: -50vh;
 }
 
 .right.slide-in {
@@ -238,6 +250,17 @@ body {
 
 @keyframes greenFlash {
     50% {background-color: rgb(109, 168, 19);}
+}
+
+.redFlash {
+    animation: redFlash;
+    animation-duration: .7s;
+    animation-iteration-count: 3;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes redFlash {
+    50% {background-color: rgb(180, 36, 36);}
 }
 
 @media screen and (max-width: 999px) {
