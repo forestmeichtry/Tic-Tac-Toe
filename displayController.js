@@ -103,6 +103,8 @@ export function initializeGame() {
             piece.classList.toggle('slide-in');
         }, { once: true });
     });
+
+    lockGrid = false;
 }
 
 function clearDisplay() {
@@ -219,7 +221,7 @@ export function returnToStart() {
         });
     }, 1100);
 
-    lockGrid = false;
+    lockGrid = true;
     boxMode = false;
 }
 

@@ -364,6 +364,17 @@ button:hover {
     bottom: 10vh;
 } 
 
+span {
+    font-size: 2em;
+    font-family: 'Source Code Pro', monospace;
+    color: var(--secondaryColor);
+}
+
+span:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .greenFlash {
     animation: greenFlash;
     animation-duration: .7s;
