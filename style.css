@@ -72,10 +72,12 @@ button:hover {
     box-shadow: 0px 0px 10px 0px rgba(var(--secondaryRGB),0.57);
 }
 
-#startButton {
+.startButtonWrapper {
     position: absolute;
+    display: flex;
     bottom: 20vh;
     transition: .2s;
+    gap: 10vh;
 }
 
 .boardPiece {
@@ -330,7 +332,7 @@ button:hover {
 }
 
 .startScreen {
-    animation-duration: 1.2s;
+    animation-duration: 1s;
     animation-timing-function: ease-out;
 }
 
@@ -415,7 +417,8 @@ span:hover {
         font-size: 16px;
     }
 
-    #startButton {
+    .startButtonWrapper {
+        gap: 5vh;
         bottom: 15vh;
     }
 

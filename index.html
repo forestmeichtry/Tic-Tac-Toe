@@ -22,9 +22,12 @@
             <div id="Tac" class="title" alt="Tac"></div>
             <div id="Toe" class="title" alt="Toe"></div>
         </div>
-        <button id="startButton" class="startScreen">Start</button>
-        <button id="lightMode">Light Mode</button>
-        <button id="boxMode">Box Mode</button>
+        <div class="startButtonWrapper startScreen">
+            <button id="startButton">Start</button>
+            <button id="optionsButton">Options</button>
+        </div>
+        <!-- <button id="lightMode">Light Mode</button>
+        <button id="boxMode">Box Mode</button> -->
         <div class="grid">
             <div class="gridSquare" data-index="0" data-mark="empty"></div>
             <div class="gridSquare" data-index="1" data-mark="empty"></div>
@@ -36,7 +39,7 @@
             <div class="gridSquare" data-index="7" data-mark="empty"></div>
             <div class="gridSquare" data-index="8" data-mark="empty"></div>
         </div>
-        <div class="boxWrapper hidden invisible"></div>
+        <div id="gameOverBox" class="boxWrapper hidden invisible"></div>
         <div class="buttonWrapper hidden invisible" id="gameOverButtons">
             <span id="playAgain">Yes</span>
             <span id="mainMenu">No</span>
