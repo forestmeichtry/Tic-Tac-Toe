@@ -192,6 +192,8 @@ export function playAgain() {
         gameOverButtons.classList.toggle('hidden');
         lockGrid = false;
     }, 1000);
+
+    playerOneTurn = !playerOneTurn;
 }
 
 export function returnToStart() {
