@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Source+Code+Pro:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="wrapper">
+    <div class="mainWrapper">
         <div class="boardPiece top offscreen"></div>
         <div class="boardPiece bottom offscreen"></div>
         <div class="boardPiece left offscreen"></div>
@@ -40,10 +40,15 @@
             <div class="gridSquare" data-index="8" data-mark="empty"></div>
         </div>
         <div id="gameOverBox" class="boxWrapper hidden invisible"></div>
-        <div id="optionsBox" class="boxWrapper hidden invisible"></div>
         <div class="buttonWrapper hidden invisible" id="gameOverButtons">
             <span id="playAgain">Yes</span>
             <span id="mainMenu">No</span>
+        </div>
+        <div class="buttonWrapper hidden invisible" id="optionsButtons">
+            <div id="closeOptions" data-mark="Cross"></div>
+            <button>background density</button>
+            <button>lightMode</button>
+            <button id="bottomOptionsButton">toggleBackground</button>
         </div>
     </div>
 </body>

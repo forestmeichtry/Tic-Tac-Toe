@@ -15,7 +15,7 @@ body {
     overflow: hidden;
 }
 
-.wrapper {
+.mainWrapper {
     position: relative;
     display: flex;
     justify-content: center;
@@ -278,6 +278,20 @@ button:hover {
     height: 20vh;
     bottom: 25vh;
     transition: .5s;
+}
+
+#optionsButtons {
+    flex-direction: column;
+    justify-content: space-between;
+    height: 44vh;
+    width: 44vh;
+    bottom: auto;
+}
+
+#closeOptions {
+    align-self: flex-end;
+    height: 30px;
+    width: 30px;
 }
 
 .gridSquare {
