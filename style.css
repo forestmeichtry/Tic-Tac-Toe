@@ -52,26 +52,30 @@ body {
     background-image: url(Assets/Bungee-Toe.svg);
 }
 
-#startButton {
-    position: absolute;
+button {
+    box-sizing: border-box;
     height: 60px;
     width: 180px;
-    bottom: 20vh;
-    box-sizing: border-box;
     color: var(--primaryColor);
     font-family: 'Source Code Pro', monospace;
     font-size: 24px;
     font-weight: bold;
     background-color: var(--secondaryColor);
-    border: 2px solid black;
+    border: 2px solid var(--primaryColor);
     border-radius: 10px;
     transition: .2s;
 }
 
-#startButton:hover {
-    -webkit-box-shadow: 0px 0px 10px 0px rgba(250,235,215,0.57);
-    -moz-box-shadow: 0px 0px 10px 0px rgba(250,235,215,0.57);
-    box-shadow: 0px 0px 10px 0px rgba(250,235,215,0.57);
+button:hover {
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(var(--secondaryRGB),0.57);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(var(--secondaryRGB),0.57);
+    box-shadow: 0px 0px 10px 0px rgba(var(--secondaryRGB),0.57);
+}
+
+#startButton {
+    position: absolute;
+    bottom: 20vh;
+    transition: .2s;
 }
 
 .boardPiece {
@@ -84,7 +88,11 @@ body {
     animation-duration: 1.5s;
     animation-delay: .5s;
     animation-timing-function: cubic-bezier(0.29, 0.74, 0.4, 1.11);
-    animation-fill-mode: forwards;
+}
+
+.slide-out {
+    animation-duration: 1.5s;
+    animation-timing-function: cubic-bezier(0.29, 0.74, 0.4, 1.11);
 }
 
 .top {
@@ -109,6 +117,15 @@ body {
     to {left: var(--sideGap);}
 }
 
+.top.slide-out {
+    animation-name: offscreenLeftReverse;
+}
+
+@keyframes offscreenLeftReverse {
+    from {left: var(--sideGap);}
+    to {left: -50vh;}
+}
+
 .bottom {
     bottom: calc(25vh + var(--squareHeight));
     width: 50vh;
@@ -129,6 +146,15 @@ body {
 
 @keyframes offscreenRight {
     to {right: var(--sideGap);}
+}
+
+.bottom.slide-out {
+    animation-name: offscreenRightReverse;
+}
+
+@keyframes offscreenRightReverse {
+    from {right: var(--sideGap);}
+    to {right: -50vh;}
 }
 
 .left {
@@ -153,6 +179,15 @@ body {
     to {top: 25vh;}
 }
 
+.left.slide-out {
+    animation-name: offscreenTopReverse;
+}
+
+@keyframes offscreenTopReverse {
+    from {top: 25vh;}
+    to {top: -50vh;}
+}
+
 .right {
     right: calc(var(--sideGap) + var(--squareHeight));
     height: 50vh;
@@ -173,6 +208,15 @@ body {
 
 @keyframes offscreenBottom {
     to {bottom: 25vh;}
+}
+
+.right.slide-out {
+    animation-name: offscreenBottomReverse;
+}
+
+@keyframes offscreenBottomReverse {
+    from {bottom: 25vh;}
+    to {bottom: -50vh;}
 }
 
 .grid {
@@ -210,14 +254,28 @@ body {
     50% {opacity: 0;}
 }
 
+.invisible {
+    opacity: 0 !important;
+}
+
 .boxWrapper.invisible {
-    opacity: 0;
     height: var(--squareHeight);
     width: var(--squareHeight);
 }
 
-.boxWrapper.hidden {
-    display: none;
+.hidden {
+    display: none !important;
+}
+
+.buttonWrapper {
+    position: absolute;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 50vh;
+    height: 20vh;
+    bottom: 25vh;
+    transition: .5s;
 }
 
 .gridSquare {
@@ -285,6 +343,15 @@ body {
     to {opacity: 0;}
 }
 
+.fadein {
+    animation-name: fadein;
+}
+
+@keyframes fadein {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
 #lightMode {
     position: absolute;
     right: 10vw;
@@ -329,6 +396,12 @@ body {
         height: 50vh;
         width: 50vw;
         top: 15vh;
+    }
+
+    button {
+        width: 120px;
+        height: 50px;
+        font-size: 16px;
     }
 
     #startButton {

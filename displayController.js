@@ -4,8 +4,10 @@ let playerOneTurn = true;
 let lockGrid = false;
 let backgroundAnimationDelay = 150;
 let boxMode = false;
+let initialized = false;
 const gridSquares = document.querySelectorAll('.gridSquare');
 const boardPieces = document.querySelectorAll('.boardPiece');
+const gameOverButtons = document.querySelector('#gameOverButtons');
 const startScreenElements = document.querySelectorAll('.startScreen');
 const box = document.querySelector('.boxWrapper');
 const root = document.querySelector(':root');
@@ -77,26 +79,30 @@ function gameOver(gameState) {
 // Attaches event listeners to game elements 
 // Initializes the board array
 export function initializeGame() {
+    if (!initialized) {
+        gridSquares.forEach((gridSquare) => {
+            gridSquare.addEventListener('click', playerClick);
+        });
+        clearBoardArray();
+
+        initialized = true;
+    }
+
     startScreenElements.forEach((element) => {
         element.classList.add('fadeout');
         element.addEventListener('animationend', () => {
             element.classList.remove('fadeout');
-            element.style.display = 'none';
+            element.classList.toggle('hidden');
         }, { once: true });
-    });
-
-    gridSquares.forEach((gridSquare) => {
-        gridSquare.addEventListener('click', playerClick);
     });
 
     boardPieces.forEach((piece) => {
-        piece.classList.add('slide-in');
+        piece.classList.toggle('slide-in');
         piece.addEventListener('animationend', () => {
-            piece.classList.remove('offscreen');
-            piece.classList.remove('slide-in');
+            piece.classList.toggle('offscreen');
+            piece.classList.toggle('slide-in');
         }, { once: true });
     });
-    clearBoardArray();
 }
 
 function clearDisplay() {
@@ -115,14 +121,20 @@ function displayMessage(winner) {
     if (winner === 'tie') {
         message = "It's a Tie!";
     } else {
-        message = winner + ' wins!';
-        
+        message = winner + ' wins!';   
     }
     
     typeMessage(message);
     setTimeout(() => {
         box.textContent = box.textContent + '\r\n\r\n';
         typeMessage('Play again?');
+
+        setTimeout(() => {
+            gameOverButtons.classList.toggle('hidden');
+            setTimeout(() => {
+                gameOverButtons.classList.toggle('invisible');
+            }, 10);
+        }, 1500);
     }, message.length * 150);
 }
 
@@ -142,14 +154,15 @@ function toggleBoxMode() {
         boardPiece.classList.toggle('box');
     }
 
-
     if (boxMode) {
         box.classList.toggle('invisible');
+        box.classList.toggle('cursor');
+        box.textContent = '';
         setTimeout(() => {
             box.classList.toggle('hidden');
         }, 1000);
     } else {
-        box.classList.toggle('hidden');
+        box.classList.remove('hidden');
         setTimeout(() => {
             box.classList.toggle('invisible');
         }, 10);
@@ -167,6 +180,47 @@ boxButton.addEventListener('click', toggleBoxMode);
 
 function changeTurn() {
     playerOneTurn = !playerOneTurn;
+}
+
+export function playAgain() {
+    gameOverButtons.classList.toggle('invisible');
+    toggleBoxMode();
+
+    setTimeout(() => {
+        gameOverButtons.classList.toggle('hidden');
+        lockGrid = false;
+    }, 1000);
+}
+
+export function returnToStart() {
+    gameOverButtons.classList.toggle('invisible');
+    box.classList.toggle('invisible');
+    box.classList.toggle('cursor');
+    box.textContent = '';
+
+    boardPieces.forEach((piece) => {
+        piece.classList.toggle('slide-out');
+        piece.addEventListener('animationend', () => {
+            piece.classList.toggle('offscreen');
+            piece.classList.toggle('slide-out');
+            piece.classList.toggle('box');
+        }, { once: true });
+    });
+
+    setTimeout(() => {
+        gameOverButtons.classList.toggle('hidden');
+        box.classList.toggle('hidden');
+        startScreenElements.forEach((element) => {
+            element.classList.toggle('hidden');
+            element.classList.add('fadein');
+            setTimeout(() => {
+                element.classList.remove('fadein');
+            }, 1100);
+        });
+    }, 1100);
+
+    lockGrid = false;
+    boxMode = false;
 }
 
 // Initially called on page load, then calls itself after a delay (backgroundAnimationDelay)
