@@ -5,11 +5,12 @@ let lockGrid = false;
 let backgroundAnimationDelay = 150;
 let boxMode = false;
 let initialized = false;
+let offscreen = true;
 const gridSquares = document.querySelectorAll('.gridSquare');
 const boardPieces = document.querySelectorAll('.boardPiece');
 const gameOverButtons = document.querySelector('#gameOverButtons');
 const startScreenElements = document.querySelectorAll('.startScreen');
-const box = document.querySelector('.boxWrapper');
+const box = document.querySelector('#gameOverBox');
 const root = document.querySelector(':root');
 
 // Triggered on click of gridSquare elements
@@ -96,13 +97,7 @@ export function initializeGame() {
         }, { once: true });
     });
 
-    boardPieces.forEach((piece) => {
-        piece.classList.toggle('slide-in');
-        piece.addEventListener('animationend', () => {
-            piece.classList.toggle('offscreen');
-            piece.classList.toggle('slide-in');
-        }, { once: true });
-    });
+    toggleBoard();
 
     lockGrid = false;
 }
@@ -176,14 +171,36 @@ function toggleBoxMode() {
     boxMode = !boxMode;
 }
 
-// FOR TESTING
-const boxButton = document.querySelector('#boxMode');
-boxButton.addEventListener('click', toggleBoxMode);
+// Toggles board pieces between offscreen / onscreen
+// With associated animations
+function toggleBoard() {
+    if (offscreen) {
+        boardPieces.forEach((piece) => {
+            piece.classList.toggle('slide-in');
+            piece.addEventListener('animationend', () => {
+                piece.classList.toggle('offscreen');
+                piece.classList.toggle('slide-in');
+            }, { once: true });
+        });
+    } else {
+        boardPieces.forEach((piece) => {
+            piece.classList.toggle('slide-out');
+            piece.addEventListener('animationend', () => {
+                piece.classList.toggle('offscreen');
+                piece.classList.toggle('slide-out');
+                piece.classList.toggle('box');
+            }, { once: true });
+        });
+    }
+
+    offscreen = !offscreen;
+}
 
 function changeTurn() {
     playerOneTurn = !playerOneTurn;
 }
 
+// starts a new game from game over screen
 export function playAgain() {
     gameOverButtons.classList.toggle('invisible');
     toggleBoxMode();
@@ -193,23 +210,18 @@ export function playAgain() {
         lockGrid = false;
     }, 1000);
 
-    playerOneTurn = !playerOneTurn;
+    changeTurn();
 }
 
+
+// Returns to start screen from game over screen
 export function returnToStart() {
     gameOverButtons.classList.toggle('invisible');
     box.classList.toggle('invisible');
     box.classList.toggle('cursor');
     box.textContent = '';
 
-    boardPieces.forEach((piece) => {
-        piece.classList.toggle('slide-out');
-        piece.addEventListener('animationend', () => {
-            piece.classList.toggle('offscreen');
-            piece.classList.toggle('slide-out');
-            piece.classList.toggle('box');
-        }, { once: true });
-    });
+    toggleBoard();
 
     setTimeout(() => {
         gameOverButtons.classList.toggle('hidden');
@@ -276,4 +288,8 @@ export function toggleLightMode() {
             boardPiece.style.transition = '1s';
         }
     }, 10);
+}
+
+export function toggleOptions() {
+    return;
 }
