@@ -7,12 +7,13 @@ let boxMode = false;
 let initialized = false;
 let offscreen = true;
 let startScreen = true;
+let options = false;
 const gridSquares = document.querySelectorAll('.gridSquare');
 const boardPieces = document.querySelectorAll('.boardPiece');
 const gameOverButtons = document.querySelector('#gameOverButtons');
 const startScreenElements = document.querySelectorAll('.startScreen');
 const box = document.querySelector('#gameOverBox');
-const optionsBox = document.querySelector('#optionsBox');
+const optionsButtons = document.querySelector('#optionsButtons');
 const root = document.querySelector(':root');
 
 // Triggered on click of gridSquare elements
@@ -124,12 +125,26 @@ function displayMessage(winner) {
         typeMessage('Play again?');
 
         setTimeout(() => {
-            gameOverButtons.classList.toggle('hidden');
-            setTimeout(() => {
-                gameOverButtons.classList.toggle('invisible');
-            }, 10);
+            toggleDisplay(gameOverButtons);
         }, 1500);
     }, message.length * 150);
+}
+
+// Toggles display of passed nodelist
+function toggleDisplay(element) {
+    if (element.classList.contains('hidden')) {
+        element.classList.toggle('hidden');
+
+        setTimeout(() => {
+            element.classList.toggle('invisible');
+        }, 10);
+    } else {
+        element.classList.toggle('invisible');
+
+        setTimeout(() => {
+            element.classList.toggle('hidden');
+        }, 1000);
+    }
 }
 
 // Simulated typing by adding characters to the box display one by one
@@ -156,21 +171,15 @@ function toggleBoardPosition() {
 function toggleBoxBackground(cursor=true) {
     if (boxMode) {
         box.classList.toggle('cursor');
-        box.classList.toggle('invisible');
         box.textContent = '';
-        setTimeout(() => {
-            box.classList.toggle('hidden');
-        }, 1000);
+        toggleDisplay(box);
     } else {
-        box.classList.remove('hidden');
-        setTimeout(() => {
-            box.classList.toggle('invisible');
-        }, 10);
         setTimeout(() => {
             if (cursor) {
                 box.classList.toggle('cursor');
             }
         }, 1010);
+        toggleDisplay(box);
     }
 
     boxMode = !boxMode;
@@ -207,26 +216,21 @@ function changeTurn() {
 
 // starts a new game from game over screen
 export function playAgain() {
-    gameOverButtons.classList.toggle('invisible');
+    toggleDisplay(gameOverButtons);
     toggleBoxBackground();
     toggleBoardPosition();
 
-    setTimeout(() => {
-        gameOverButtons.classList.toggle('hidden');
-        lockGrid = false;
-    }, 1000);
-
+    lockGrid = false;
     changeTurn();
 }
 
 // Returns to start screen from game over screen
 export function returnToStart() {
-    gameOverButtons.classList.toggle('invisible');
     toggleBoxBackground();
     toggleBoard();
+    toggleDisplay(gameOverButtons);
 
     setTimeout(() => {
-        gameOverButtons.classList.toggle('hidden');
         toggleStartScreen();
     }, 1100);
 
@@ -310,11 +314,21 @@ export function toggleLightMode() {
 }
 
 export function toggleOptions() {
-    toggleBoardPosition();
-    toggleBoard();
-    toggleStartScreen();
+    if (!options) {
+        toggleBoardPosition();
+        toggleBoard();
+        toggleStartScreen();
 
-    setTimeout(() => {
-        toggleBoxBackground(false);
-    }, 500);
+        setTimeout(() => {
+            toggleBoxBackground(false);
+        }, 500);
+
+        setTimeout(() => {
+            toggleDisplay(optionsButtons);
+        }, 1500);
+    } else {
+
+    }
+
+    options = !options;
 }
