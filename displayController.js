@@ -170,7 +170,9 @@ function toggleBoardPosition() {
 // Toggles game over box
 function toggleBoxBackground(cursor=true) {
     if (boxMode) {
-        box.classList.toggle('cursor');
+        if (cursor) {
+            box.classList.toggle('cursor');
+        }
         box.textContent = '';
         toggleDisplay(box);
     } else {
@@ -216,7 +218,8 @@ function changeTurn() {
 
 // starts a new game from game over screen
 export function playAgain() {
-    toggleDisplay(gameOverButtons);
+    gameOverButtons.classList.add('hidden');
+    gameOverButtons.classList.add('invisible');
     toggleBoxBackground();
     toggleBoardPosition();
 
@@ -228,14 +231,14 @@ export function playAgain() {
 export function returnToStart() {
     toggleBoxBackground();
     toggleBoard();
-    toggleDisplay(gameOverButtons);
+    gameOverButtons.classList.add('hidden');
+    gameOverButtons.classList.add('invisible');
 
     setTimeout(() => {
         toggleStartScreen();
     }, 1100);
 
     lockGrid = true;
-    boxMode = false;
 }
 
 // Initially called on page load, then calls itself after a delay (backgroundAnimationDelay)
@@ -327,7 +330,14 @@ export function toggleOptions() {
             toggleDisplay(optionsButtons);
         }, 1500);
     } else {
+        toggleBoxBackground(false);
+        toggleBoard();
+        optionsButtons.classList.add('hidden');
+        optionsButtons.classList.add('invisible');
 
+        setTimeout(() => {
+            toggleStartScreen();
+        }, 1100);
     }
 
     options = !options;

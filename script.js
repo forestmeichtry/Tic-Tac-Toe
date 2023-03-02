@@ -12,6 +12,12 @@ mainMenuButton.addEventListener('click', returnToStart);
 const optionsButton = document.querySelector('#optionsButton');
 optionsButton.addEventListener('click', toggleOptions);
 
+const lightMode = document.querySelector('#lightMode');
+lightMode.addEventListener('click', toggleLightMode);
+
+const closeOptionsButton = document.querySelector('#closeOptions');
+closeOptionsButton.addEventListener('click', toggleOptions);
+
 animateBackground();
 
 // TODO: add slider for background density
