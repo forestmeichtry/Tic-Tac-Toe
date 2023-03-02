@@ -6,11 +6,13 @@ let backgroundAnimationDelay = 150;
 let boxMode = false;
 let initialized = false;
 let offscreen = true;
+let startScreen = true;
 const gridSquares = document.querySelectorAll('.gridSquare');
 const boardPieces = document.querySelectorAll('.boardPiece');
 const gameOverButtons = document.querySelector('#gameOverButtons');
 const startScreenElements = document.querySelectorAll('.startScreen');
 const box = document.querySelector('#gameOverBox');
+const optionsBox = document.querySelector('#optionsBox');
 const root = document.querySelector(':root');
 
 // Triggered on click of gridSquare elements
@@ -90,13 +92,7 @@ export function initializeGame() {
         initialized = true;
     }
 
-    startScreenElements.forEach((element) => {
-        element.classList.add('fadeout');
-        element.addEventListener('animationend', () => {
-            element.classList.remove('fadeout');
-            element.classList.toggle('hidden');
-        }, { once: true });
-    });
+    toggleStartScreen();
 
     toggleBoard();
 
@@ -157,10 +153,10 @@ function toggleBoardPosition() {
 }
 
 // Toggles game over box
-function toggleBoxBackground() {
+function toggleBoxBackground(cursor=true) {
     if (boxMode) {
-        box.classList.toggle('invisible');
         box.classList.toggle('cursor');
+        box.classList.toggle('invisible');
         box.textContent = '';
         setTimeout(() => {
             box.classList.toggle('hidden');
@@ -171,7 +167,9 @@ function toggleBoxBackground() {
             box.classList.toggle('invisible');
         }, 10);
         setTimeout(() => {
-            box.classList.toggle('cursor');
+            if (cursor) {
+                box.classList.toggle('cursor');
+            }
         }, 1010);
     }
 
@@ -221,7 +219,6 @@ export function playAgain() {
     changeTurn();
 }
 
-
 // Returns to start screen from game over screen
 export function returnToStart() {
     gameOverButtons.classList.toggle('invisible');
@@ -230,13 +227,7 @@ export function returnToStart() {
 
     setTimeout(() => {
         gameOverButtons.classList.toggle('hidden');
-        startScreenElements.forEach((element) => {
-            element.classList.toggle('hidden');
-            element.classList.add('fadein');
-            setTimeout(() => {
-                element.classList.remove('fadein');
-            }, 1100);
-        });
+        toggleStartScreen();
     }, 1100);
 
     lockGrid = true;
@@ -269,6 +260,30 @@ export function animateBackground() {
     setTimeout(animateBackground, backgroundAnimationDelay);
 }
 
+// Toggles start screen
+// with associated fade in / out animation
+function toggleStartScreen() {
+    if (startScreen) {
+        startScreenElements.forEach((element) => {
+            element.classList.add('fadeout');
+            element.addEventListener('animationend', () => {
+                element.classList.remove('fadeout');
+                element.classList.toggle('hidden');
+            }, { once: true });
+        });
+    } else {
+        startScreenElements.forEach((element) => {
+            element.classList.toggle('hidden');
+            element.classList.add('fadein');
+            setTimeout(() => {
+                element.classList.remove('fadein');
+            }, 1100);
+        });
+    }
+
+    startScreen = !startScreen;
+}
+
 // Toggles light mode by swapping primary and secondary color variables in root
 export function toggleLightMode() {
     box.style.transition = 'none';
@@ -295,5 +310,11 @@ export function toggleLightMode() {
 }
 
 export function toggleOptions() {
-    
+    toggleBoardPosition();
+    toggleBoard();
+    toggleStartScreen();
+
+    setTimeout(() => {
+        toggleBoxBackground(false);
+    }, 500);
 }
