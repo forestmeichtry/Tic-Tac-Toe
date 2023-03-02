@@ -68,7 +68,8 @@ function gameOver(gameState) {
     }, 1500);
 
     setTimeout(() => {
-        toggleBoxMode();
+        toggleBoxBackground();
+        toggleBoardPosition();
     }, 2000);
 
     setTimeout(() => {
@@ -135,6 +136,8 @@ function displayMessage(winner) {
     }, message.length * 150);
 }
 
+// Simulated typing by adding characters to the box display one by one
+// with a random delay between characters
 function typeMessage(message) {
     box.textContent = box.textContent + message[0];
 
@@ -146,11 +149,15 @@ function typeMessage(message) {
     }
 }
 
-function toggleBoxMode() {
+// Toggles board between grid and box position
+function toggleBoardPosition() {
     for (let boardPiece of boardPieces) {
         boardPiece.classList.toggle('box');
     }
+}
 
+// Toggles game over box
+function toggleBoxBackground() {
     if (boxMode) {
         box.classList.toggle('invisible');
         box.classList.toggle('cursor');
@@ -203,7 +210,8 @@ function changeTurn() {
 // starts a new game from game over screen
 export function playAgain() {
     gameOverButtons.classList.toggle('invisible');
-    toggleBoxMode();
+    toggleBoxBackground();
+    toggleBoardPosition();
 
     setTimeout(() => {
         gameOverButtons.classList.toggle('hidden');
@@ -217,15 +225,11 @@ export function playAgain() {
 // Returns to start screen from game over screen
 export function returnToStart() {
     gameOverButtons.classList.toggle('invisible');
-    box.classList.toggle('invisible');
-    box.classList.toggle('cursor');
-    box.textContent = '';
-
+    toggleBoxBackground();
     toggleBoard();
 
     setTimeout(() => {
         gameOverButtons.classList.toggle('hidden');
-        box.classList.toggle('hidden');
         startScreenElements.forEach((element) => {
             element.classList.toggle('hidden');
             element.classList.add('fadein');
@@ -291,5 +295,5 @@ export function toggleLightMode() {
 }
 
 export function toggleOptions() {
-    return;
+    
 }
