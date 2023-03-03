@@ -1,4 +1,4 @@
-import { animateBackground, initializeGame, toggleLightMode, playAgain, returnToStart, toggleOptions } from "./displayController.js";
+import { animateBackground, initializeGame, toggleLightMode, playAgain, returnToStart, toggleOptions, toggleBackground, changeBackgroundDensity } from "./displayController.js";
 
 const startButton = document.querySelector('#startButton');
 startButton.addEventListener('click', initializeGame);
@@ -17,6 +17,12 @@ lightMode.addEventListener('click', toggleLightMode);
 
 const closeOptionsButton = document.querySelector('#closeOptions');
 closeOptionsButton.addEventListener('click', toggleOptions);
+
+const toggleBackgroundButton = document.querySelector('#toggleBackground');
+toggleBackgroundButton.addEventListener('click', toggleBackground);
+
+const backgroundDensitySlider = document.querySelector('#backgroundDensity');
+backgroundDensitySlider.addEventListener('input', changeBackgroundDensity);
 
 animateBackground();
 

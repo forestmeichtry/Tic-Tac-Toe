@@ -46,9 +46,14 @@
         </div>
         <div class="buttonWrapper hidden invisible" id="optionsButtons">
             <div id="closeOptions" data-mark="Cross"></div>
-            <button>background density</button>
             <button id="lightMode">lightMode</button>
-            <button id="bottomOptionsButton">toggleBackground</button>
+            <button id="toggleBackground">toggleBackground</button>
+            <div class="optionsInfo">
+                Background Density
+                <div class="slideContainer">
+                    <input id="backgroundDensity" type="range" min="-2" max="2" value="0">
+                </div>
+            </div>
         </div>
     </div>
 </body>

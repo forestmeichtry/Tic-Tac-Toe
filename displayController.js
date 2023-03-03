@@ -2,18 +2,20 @@ import { addMark, checkForWinner, clearBoardArray } from "./gameBoard.js";
 
 let playerOneTurn = true;
 let lockGrid = false;
-let backgroundAnimationDelay = 150;
 let boxMode = false;
 let initialized = false;
 let offscreen = true;
 let startScreen = true;
 let options = false;
+let background = true;
+let backgroundAnimationDelay = 150;
 const gridSquares = document.querySelectorAll('.gridSquare');
 const boardPieces = document.querySelectorAll('.boardPiece');
 const gameOverButtons = document.querySelector('#gameOverButtons');
 const startScreenElements = document.querySelectorAll('.startScreen');
 const box = document.querySelector('#gameOverBox');
 const optionsButtons = document.querySelector('#optionsButtons');
+const backgroundToggle = document.querySelector('#toggleBackground');
 const root = document.querySelector(':root');
 
 // Triggered on click of gridSquare elements
@@ -244,6 +246,10 @@ export function returnToStart() {
 // Initially called on page load, then calls itself after a delay (backgroundAnimationDelay)
 // Creates a div with a randomly assigned x-position and falling animation
 export function animateBackground() {
+    if (!background) {
+        return;
+    }
+
     let element = document.createElement('div');
     element.classList.add('fallingMark');
 
@@ -265,6 +271,32 @@ export function animateBackground() {
     document.body.appendChild(element);
 
     setTimeout(animateBackground, backgroundAnimationDelay);
+}
+
+// Toggles animated background
+export function toggleBackground() {
+    let rs = getComputedStyle(root);
+
+    if (background) {
+        background = !background;
+        let marks = document.querySelectorAll('.fallingMark');
+        for (let mark of marks) {
+            mark.remove();
+        }
+    } else {
+        background = !background;
+        animateBackground();
+    }
+}
+
+// Changes background density by adjusting delay between animateBackground calls
+export function changeBackgroundDensity() {
+    let value = this.value
+    if (value < 1) {
+        backgroundAnimationDelay = 150 - (400 * value);
+    } else {
+        backgroundAnimationDelay = 100 / value;
+    }
 }
 
 // Toggles start screen
