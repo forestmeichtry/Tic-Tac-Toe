@@ -26,5 +26,8 @@ backgroundDensitySlider.addEventListener('input', changeBackgroundDensity);
 
 animateBackground();
 
-// TODO: add slider for background density
-// Create better light mode toggle
+// TODO: Finish styling options menu
+// Create better toggle button
+// lock buttons during animation / transition
+// Score tracking (need to use player object factories)
+// Make ai opponent (last)

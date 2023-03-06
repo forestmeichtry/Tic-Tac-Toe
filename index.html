@@ -26,8 +26,6 @@
             <button id="startButton">Start</button>
             <button id="optionsButton">Options</button>
         </div>
-        <!-- <button id="lightMode">Light Mode</button>
-        <button id="boxMode">Box Mode</button> -->
         <div class="grid">
             <div class="gridSquare" data-index="0" data-mark="empty"></div>
             <div class="gridSquare" data-index="1" data-mark="empty"></div>
@@ -46,9 +44,29 @@
         </div>
         <div class="buttonWrapper hidden invisible" id="optionsButtons">
             <div id="closeOptions" data-mark="Cross"></div>
-            <button id="lightMode">lightMode</button>
-            <button id="toggleBackground">toggleBackground</button>
-            <div class="optionsInfo">
+            <div class="optionsInfo" id="lightmodeSwitch">
+                Toggle Light Mode
+                <label class="switch">
+                    <input type="checkbox" id="lightMode">
+                    <span class="slider">
+                        <div data-mark="Cross" class="toggleCross"></div>
+                        <div class="toggleMidpoint"></div>
+                        <div data-mark="Circle" class="toggleCircle"></div>
+                    </span>
+                </label>
+            </div>
+            <div class="optionsInfo" id="backgroundSwitch">
+                Toggle Background
+                <label class="switch">
+                    <input type="checkbox" id="toggleBackground" checked>
+                    <span class="slider">
+                        <div data-mark="Cross" class="toggleCross"></div>
+                        <div class="toggleMidpoint"></div>
+                        <div data-mark="Circle" class="toggleCircle"></div>
+                    </span>
+                </label>
+            </div>
+            <div class="optionsInfo" id="densitySlide">
                 Background Density
                 <div class="slideContainer">
                     <input id="backgroundDensity" type="range" min="-2" max="2" value="0">
