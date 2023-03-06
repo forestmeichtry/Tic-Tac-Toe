@@ -2,6 +2,7 @@ import { addMark, checkForWinner, clearBoardArray } from "./gameBoard.js";
 
 let playerOneTurn = true;
 let lockGrid = false;
+let lockButtons = false;
 let boxMode = false;
 let initialized = false;
 let offscreen = true;
@@ -82,10 +83,26 @@ function gameOver(gameState) {
     }, 3000);
 }
 
+function checkButtonLock(delay) {
+    if (!lockButtons) {
+        lockButtons = true;
+        setTimeout(() => {
+            lockButtons = false;
+        }, delay);
+        return false;
+    } else {
+        return true;
+    }
+}
+
 // Called on game start 
 // Attaches event listeners to game elements 
 // Initializes the board array
 export function initializeGame() {
+    if (checkButtonLock(1000)) {
+        return;
+    }
+
     if (!initialized) {
         gridSquares.forEach((gridSquare) => {
             gridSquare.addEventListener('click', playerClick);
@@ -349,6 +366,10 @@ export function toggleLightMode() {
 }
 
 export function toggleOptions() {
+    if (checkButtonLock(1900)) {
+        return;
+    }
+
     if (!options) {
         toggleBoardPosition();
         toggleBoard();

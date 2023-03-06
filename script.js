@@ -26,8 +26,6 @@ backgroundDensitySlider.addEventListener('input', changeBackgroundDensity);
 
 animateBackground();
 
-// TODO: Finish styling options menu
-// Create better toggle button
-// lock buttons during animation / transition
+// TODO:
 // Score tracking (need to use player object factories)
 // Make ai opponent (last)
