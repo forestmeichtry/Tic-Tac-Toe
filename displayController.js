@@ -58,7 +58,7 @@ function gameOver(gameState) {
             }, { once: true });
         }
     } else {
-        winner = playerOneTurn ? 'Player 1' : 'Player 2';
+        winner = playerOneTurn ? playerOne : playerTwo;
         for (let square of gridSquares) {
             if (gameState.includes(parseInt(square.dataset.index))) {
                 square.classList.add('greenFlash');
@@ -161,12 +161,11 @@ function clearDisplay() {
 }
 
 function displayMessage(winner) {
-    let playAgain = 'Play again?'
     let message;
     if (winner === 'tie') {
         message = "It's a Tie!";
     } else {
-        message = winner + ' wins!';   
+        message = winner.playerName + ' wins!';   
     }
     
     typeMessage(message);
