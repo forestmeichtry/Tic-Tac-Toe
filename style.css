@@ -5,8 +5,8 @@
     --secondaryRGB: 250, 235, 215;
     --circleMark: url(Assets/Circle.svg);
     --crossMark: url(Assets/Cross.svg);
-    --squareHeight: calc(calc(50vh - 30px) / 3);
-    --sideGap: calc(calc(100vw - 50vh) / 2);
+    --squareHeight: calc(calc(50lvh - 30px) / 3);
+    --sideGap: calc(calc(100vw - 50lvh) / 2);
 }
 
 body {
@@ -20,7 +20,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100lvh;
     overflow: hidden;
 }
 
@@ -75,9 +75,9 @@ button:hover {
 .startButtonWrapper {
     position: absolute;
     display: flex;
-    bottom: 20vh;
+    bottom: 20lvh;
     transition: .2s;
-    gap: 10vh;
+    gap: 10lvh;
 }
 
 .boardPiece {
@@ -98,17 +98,17 @@ button:hover {
 }
 
 .top {
-    top: calc(25vh + var(--squareHeight));
-    width: 50vh;
+    top: calc(25lvh + var(--squareHeight));
+    width: 50lvh;
     height: 15px;
 }
 
 .top.offscreen {
-    left: -50vh;
+    left: -50lvh;
 }
 
 .top.box {
-    top: 25vh;
+    top: 25lvh;
 }
 
 .top.slide-in {
@@ -125,21 +125,21 @@ button:hover {
 
 @keyframes offscreenLeftReverse {
     from {left: var(--sideGap);}
-    to {left: -50vh;}
+    to {left: -50lvh;}
 }
 
 .bottom {
-    bottom: calc(25vh + var(--squareHeight));
-    width: 50vh;
+    bottom: calc(25lvh + var(--squareHeight));
+    width: 50lvh;
     height: 15px;
 }
 
 .bottom.offscreen {
-    right: -50vh;
+    right: -50lvh;
 }
 
 .bottom.box {
-    bottom: 25vh;
+    bottom: 25lvh;
 }
 
 .bottom.slide-in {
@@ -156,17 +156,17 @@ button:hover {
 
 @keyframes offscreenRightReverse {
     from {right: var(--sideGap);}
-    to {right: -50vh;}
+    to {right: -50lvh;}
 }
 
 .left {
     left: calc(var(--sideGap) + var(--squareHeight));
-    height: 50vh;
+    height: 50lvh;
     width: 15px;
 }
 
 .left.offscreen {
-    top: -50vh;
+    top: -50lvh;
 }
 
 .left.box {
@@ -178,7 +178,7 @@ button:hover {
 }
 
 @keyframes offscreenTop {
-    to {top: 25vh;}
+    to {top: 25lvh;}
 }
 
 .left.slide-out {
@@ -186,18 +186,18 @@ button:hover {
 }
 
 @keyframes offscreenTopReverse {
-    from {top: 25vh;}
-    to {top: -50vh;}
+    from {top: 25lvh;}
+    to {top: -50lvh;}
 }
 
 .right {
     right: calc(var(--sideGap) + var(--squareHeight));
-    height: 50vh;
+    height: 50lvh;
     width: 15px;
 }
 
 .right.offscreen {
-    bottom: -50vh;
+    bottom: -50lvh;
 }
 
 .right.box {
@@ -209,7 +209,7 @@ button:hover {
 }
 
 @keyframes offscreenBottom {
-    to {bottom: 25vh;}
+    to {bottom: 25lvh;}
 }
 
 .right.slide-out {
@@ -217,8 +217,8 @@ button:hover {
 }
 
 @keyframes offscreenBottomReverse {
-    from {bottom: 25vh;}
-    to {bottom: -50vh;}
+    from {bottom: 25lvh;}
+    to {bottom: -50lvh;}
 }
 
 .grid {
@@ -226,17 +226,17 @@ button:hover {
     background-color: var(--primaryColor);
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    height: 50vh;
-    width: 50vh;
+    height: 50lvh;
+    width: 50lvh;
     gap: 15px;
 }
 
 .boxWrapper {
     position: absolute;
-    height: 44vh;
-    width: 44vh;
+    height: 44lvh;
+    width: 44lvh;
     transition: 1s;
-    padding: 2vh;
+    padding: 2lvh;
     font-size: 3em;
     font-family: 'Source Code Pro', monospace;
     color: var(--secondaryColor);
@@ -274,9 +274,9 @@ button:hover {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    width: 50vh;
-    height: 20vh;
-    bottom: 25vh;
+    width: 50lvh;
+    height: 20lvh;
+    bottom: 25lvh;
     transition: .5s;
 }
 
@@ -285,8 +285,8 @@ button:hover {
     grid-template-rows: 1fr 1fr 80px;
     grid-template-columns: 1fr;
     justify-items: center;
-    height: 44vh;
-    width: 44vh;
+    height: 44lvh;
+    width: 44lvh;
     bottom: auto;
 }
 
@@ -331,8 +331,8 @@ button:hover {
     display: grid;
     grid-template-columns: 2fr 3fr 30px;
     grid-template-rows: 30px 1fr 1fr 1fr;
-    height: 44vh;
-    width: 44vh;
+    height: 44lvh;
+    width: 44lvh;
     bottom: auto;
 }
 
@@ -350,7 +350,7 @@ button:hover {
     font-family: 'Source Code Pro', monospace;
     text-align: center;
     font-size: 1em;
-    margin-left: 1vh;
+    margin-left: 1lvh;
 }
 
 .switch {
@@ -441,7 +441,7 @@ input:checked + .slider:before {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 20vh;
+    width: 20lvh;
     height: 30px;
     -webkit-mask-image: url(Assets/RangeSlider.svg);
     mask-image: url(Assets/RangeSlider.svg);
@@ -550,19 +550,19 @@ input[type=range]::-webkit-slider-runnable-track {
 }
 
 @keyframes falling0 {
-    to {transform: translateY(calc(100vh + 20px)) rotate3d(10, 10, 4, -500deg)}
+    to {transform: translateY(calc(100lvh + 20px)) rotate3d(10, 10, 4, -500deg)}
 }
 
 @keyframes falling1 {
-    to {transform: translateY(calc(100vh + 20px)) rotate3d(-2, 6, -3, 500deg);}
+    to {transform: translateY(calc(100lvh + 20px)) rotate3d(-2, 6, -3, 500deg);}
 }
 
 @keyframes falling2 {
-    to {transform: translateY(calc(100vh + 20px)) rotate3d(3, -5, 3, 750deg)}
+    to {transform: translateY(calc(100lvh + 20px)) rotate3d(3, -5, 3, 750deg)}
 }
 
 @keyframes falling3 {
-    to {transform: translateY(calc(100vh + 20px)) rotate3d(-8, 1, 2, -600deg)}
+    to {transform: translateY(calc(100lvh + 20px)) rotate3d(-8, 1, 2, -600deg)}
 }
 
 .startScreen {
@@ -591,7 +591,7 @@ input[type=range]::-webkit-slider-runnable-track {
 #boxMode {
     position: absolute;
     left: 10vw;
-    bottom: 10vh;
+    bottom: 10lvh;
 } 
 
 span {
@@ -634,9 +634,9 @@ span:hover {
 
     #titleContainer {
         flex-direction: column;
-        height: 50vh;
+        height: 50lvh;
         width: 50vw;
-        top: 15vh;
+        top: 15lvh;
     }
 
     button {
@@ -646,8 +646,8 @@ span:hover {
     }
 
     .startButtonWrapper {
-        gap: 5vh;
-        bottom: 15vh;
+        gap: 5lvh;
+        bottom: 15lvh;
     }
 
     .boxWrapper {
