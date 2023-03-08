@@ -10,13 +10,15 @@ let startScreen = true;
 let options = false;
 let background = true;
 let backgroundAnimationDelay = 150;
+let playerOne;
+let playerTwo;
 const gridSquares = document.querySelectorAll('.gridSquare');
 const boardPieces = document.querySelectorAll('.boardPiece');
+const setPlayerButtons = document.querySelector('#setPlayerButtons');
 const gameOverButtons = document.querySelector('#gameOverButtons');
 const startScreenElements = document.querySelectorAll('.startScreen');
 const box = document.querySelector('#gameOverBox');
 const optionsButtons = document.querySelector('#optionsButtons');
-const backgroundToggle = document.querySelector('#toggleBackground');
 const root = document.querySelector(':root');
 
 // Triggered on click of gridSquare elements
@@ -112,11 +114,40 @@ export function initializeGame() {
         initialized = true;
     }
 
+    toggleBoardPosition();
     toggleStartScreen();
-
     toggleBoard();
+    setTimeout(() => {
+        toggleBoxBackground(false);
+    }, 500);
+    setTimeout(() => {
+        toggleDisplay(setPlayerButtons);
+    }, 1500);
 
     lockGrid = false;
+}
+
+export function startGame() {
+    let playerOneName = document.querySelector('#playerOneInput').value;
+    if (!playerOneName) {
+        playerOneName = 'Player One';
+    }
+    playerOne = playerFactory(playerOneName, false);
+
+    let playerTwoName = document.querySelector('#playerTwoInput').value;
+    if (!playerTwoName) {
+        playerTwoName = 'Player Two';
+    }
+    playerTwo = playerFactory(playerTwoName, false);
+
+    toggleBoardPosition();
+    toggleBoxBackground(false);
+    toggleDisplay(setPlayerButtons);
+}
+
+const playerFactory = (playerName, computer) => {
+    let score = 0;
+    return {playerName, score, computer};
 }
 
 function clearDisplay() {
@@ -248,6 +279,7 @@ export function playAgain() {
 
 // Returns to start screen from game over screen
 export function returnToStart() {
+    checkButtonLock(2000);
     toggleBoxBackground();
     toggleBoard();
     gameOverButtons.classList.add('hidden');
@@ -366,7 +398,7 @@ export function toggleLightMode() {
 }
 
 export function toggleOptions() {
-    if (checkButtonLock(1900)) {
+    if (checkButtonLock(2000)) {
         return;
     }
 

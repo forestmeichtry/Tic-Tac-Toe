@@ -23,7 +23,7 @@
             <div id="Toe" class="title" alt="Toe"></div>
         </div>
         <div class="startButtonWrapper startScreen">
-            <button id="startButton">Start</button>
+            <button id="startButton">Play</button>
             <button id="optionsButton">Options</button>
         </div>
         <div class="grid">
@@ -41,6 +41,31 @@
         <div class="buttonWrapper hidden invisible" id="gameOverButtons">
             <span id="playAgain">Yes</span>
             <span id="mainMenu">No</span>
+        </div>
+        <div class="buttonWrapper hidden invisible" id="setPlayerButtons">
+            <div class="playerOption playerOne">
+                <span data-mark="Cross" class="playerMark"></span>
+                <input type="text" placeholder="Player One" class="playerInput" id="playerOneInput" maxlength="10">
+                <span data-mark="Cross" class="playerMark"></span>
+            </div>
+            <div class="playerOption">
+                <span data-mark="Circle" class="playerMark"></span>
+                <input type="text" placeholder="Player Two" class="playerInput" id="playerTwoInput" maxlength="10">
+                <span data-mark="Circle" class="playerMark"></span>
+                <div class="optionsInfo playerComputerToggle">
+                    Computer Controlled
+                    <label class="switch">
+                        <input type="checkbox" id="playerTwoComputerToggle" >
+                        <span class="slider">
+                            <div data-mark="Cross" class="toggleCross"></div>
+                            <div class="toggleMidpoint"></div>
+                            <div data-mark="Circle" class="toggleCircle"></div>
+                        </span>
+                    </label>
+                </div>
+
+            </div>
+            <span id="startGame">Start</span>
         </div>
         <div class="buttonWrapper hidden invisible" id="optionsButtons">
             <div id="closeOptions" data-mark="Cross"></div>

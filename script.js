@@ -1,4 +1,4 @@
-import { animateBackground, initializeGame, toggleLightMode, playAgain, returnToStart, toggleOptions, toggleBackground, changeBackgroundDensity } from "./displayController.js";
+import { animateBackground, initializeGame, toggleLightMode, playAgain, returnToStart, toggleOptions, toggleBackground, changeBackgroundDensity, startGame } from "./displayController.js";
 
 const startButton = document.querySelector('#startButton');
 startButton.addEventListener('click', initializeGame);
@@ -24,8 +24,12 @@ toggleBackgroundButton.addEventListener('click', toggleBackground);
 const backgroundDensitySlider = document.querySelector('#backgroundDensity');
 backgroundDensitySlider.addEventListener('input', changeBackgroundDensity);
 
+const startGameButton = document.querySelector('#startGame');
+startGameButton.addEventListener('click', startGame);
+
 animateBackground();
 
 // TODO:
 // Score tracking (need to use player object factories)
+// Adjust positioning of mobile elements
 // Make ai opponent (last)
