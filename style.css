@@ -322,6 +322,14 @@ button:hover {
     text-align: center;
 }
 
+.playerInput:focus {
+    outline: none;
+}
+
+.playerInput:focus::placeholder {
+    color: transparent;
+}
+
 .playerComputerToggle {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
