@@ -1,6 +1,7 @@
-import { addMark, checkForWinner, clearBoardArray } from "./gameBoard.js";
+import { addMark, checkForWinner, clearBoardArray, availableSquares } from "./gameBoard.js";
 
 let playerOneTurn = true;
+let computerControl = false;
 let lockGrid = false;
 let lockButtons = false;
 let boxMode = false;
@@ -30,7 +31,7 @@ function playerClick() {
     }
 
     // Place the current players mark
-    let mark = playerOneTurn ? 'Cross' : 'Circle';
+    let mark = playerOneTurn ? playerOne.mark : playerTwo.mark;
     this.dataset.mark = mark;
     addMark(mark, this.dataset.index);
 
@@ -41,6 +42,8 @@ function playerClick() {
     } else {
         changeTurn();
     }
+
+    return true;
 }
 
 // Triggered on win / tie
@@ -127,27 +130,31 @@ export function initializeGame() {
     lockGrid = false;
 }
 
+export function toggleComputerControl() {
+    computerControl = !computerControl;
+}
+
 export function startGame() {
     let playerOneName = document.querySelector('#playerOneInput').value;
     if (!playerOneName) {
         playerOneName = 'Player One';
     }
-    playerOne = playerFactory(playerOneName, false);
+    playerOne = playerFactory(playerOneName, false, 'Cross');
 
     let playerTwoName = document.querySelector('#playerTwoInput').value;
     if (!playerTwoName) {
         playerTwoName = 'Player Two';
     }
-    playerTwo = playerFactory(playerTwoName, false);
+    playerTwo = playerFactory(playerTwoName, false, 'Circle');
 
     toggleBoardPosition();
     toggleBoxBackground(false);
     toggleDisplay(setPlayerButtons);
 }
 
-const playerFactory = (playerName, computer) => {
+const playerFactory = (playerName, computer, mark) => {
     let score = 0;
-    return {playerName, score, computer};
+    return {playerName, score, computer, mark};
 }
 
 function clearDisplay() {
@@ -263,6 +270,24 @@ function toggleBoard() {
 
 function changeTurn() {
     playerOneTurn = !playerOneTurn;
+    if (!playerOneTurn && computerControl) {
+        computerMove();
+    }
+}
+
+function computerMove() {
+    let moveCompleted = false;
+    while (!moveCompleted) {
+        let randomIndex = Math.floor(Math.random() * gridSquares.length);
+        let randomSquare = gridSquares[randomIndex];
+        console.log('Computer Move:')
+        console.log(randomSquare.dataset.mark);
+        console.log(randomSquare);
+        if (randomSquare.dataset.mark === 'empty') {
+            randomSquare.click();
+            moveCompleted = true;
+        }
+    }
 }
 
 // starts a new game from game over screen

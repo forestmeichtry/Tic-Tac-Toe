@@ -13,6 +13,10 @@ export function addMark(symbol, index) {
     gameBoard[index] = symbol;
 }
 
+export function availableSquares() {
+    return gameBoard.filter(symbol => symbol = '');
+}
+
 export function checkForWinner(index) {
     const winningCombinations = [
         [0, 1, 2],

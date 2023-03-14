@@ -1,4 +1,4 @@
-import { animateBackground, initializeGame, toggleLightMode, playAgain, returnToStart, toggleOptions, toggleBackground, changeBackgroundDensity, startGame } from "./displayController.js";
+import { animateBackground, initializeGame, toggleLightMode, playAgain, returnToStart, toggleOptions, toggleBackground, changeBackgroundDensity, startGame, toggleComputerControl } from "./displayController.js";
 
 const startButton = document.querySelector('#startButton');
 startButton.addEventListener('click', initializeGame);
@@ -26,6 +26,9 @@ backgroundDensitySlider.addEventListener('input', changeBackgroundDensity);
 
 const startGameButton = document.querySelector('#startGame');
 startGameButton.addEventListener('click', startGame);
+
+const computerToggle = document.querySelector('#playerTwoComputerToggle');
+computerToggle.addEventListener('click', toggleComputerControl);
 
 animateBackground();
 
