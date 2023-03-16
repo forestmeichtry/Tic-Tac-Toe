@@ -666,7 +666,7 @@ span:hover {
         flex-direction: column;
         height: 50vh;
         width: 50vw;
-        top: 10vh;
+        top: 5vh;
     }
 
     .play_svg {
@@ -683,7 +683,7 @@ span:hover {
         flex-direction: column;
         align-items: center;
         gap: 3vh;
-        bottom: 10vh;
+        bottom: 15vh;
     }
 
     #setPlayerButtons,
