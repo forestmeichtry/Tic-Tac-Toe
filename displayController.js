@@ -135,26 +135,17 @@ export function toggleComputerControl() {
 }
 
 export function startGame() {
-    let playerOneName = document.querySelector('#playerOneInput').value;
-    if (!playerOneName) {
-        playerOneName = 'Player One';
-    }
-    playerOne = playerFactory(playerOneName, false, 'Cross');
-
-    let playerTwoName = document.querySelector('#playerTwoInput').value;
-    if (!playerTwoName) {
-        playerTwoName = 'Player Two';
-    }
-    playerTwo = playerFactory(playerTwoName, false, 'Circle');
+    playerOne = playerFactory(false, 'Cross');
+    playerTwo = playerFactory(false, 'Circle');
 
     toggleBoardPosition();
     toggleBoxBackground(false);
     toggleDisplay(setPlayerButtons);
 }
 
-const playerFactory = (playerName, computer, mark) => {
+const playerFactory = (computer, mark) => {
     let score = 0;
-    return {playerName, score, computer, mark};
+    return {score, computer, mark};
 }
 
 function clearDisplay() {

@@ -18,9 +18,9 @@
         <div class="boardPiece left offscreen"></div>
         <div class="boardPiece right offscreen"></div>
         <div id="titleContainer" class="startScreen">
-            <div id="Tic" class="title" alt="Tic"></div>
-            <div id="Tac" class="title" alt="Tac"></div>
-            <div id="Toe" class="title" alt="Toe"></div>
+            <div id="Tic_svg" class="title" alt="Tic"></div>
+            <div id="Tac_svg" class="title" alt="Tac"></div>
+            <div id="Toe_svg" class="title" alt="Toe"></div>
         </div>
         <div class="startButtonWrapper startScreen">
             <button id="startButton">Play</button>
@@ -44,16 +44,23 @@
         </div>
         <div class="buttonWrapper hidden invisible" id="setPlayerButtons">
             <div class="playerOption playerOne">
-                <span data-mark="Cross" class="playerMark"></span>
-                <input type="text" placeholder="Player One" class="playerInput" id="playerOneInput" maxlength="10">
-                <span data-mark="Cross" class="playerMark"></span>
-            </div>
-            <div class="playerOption">
-                <span data-mark="Circle" class="playerMark"></span>
-                <input type="text" placeholder="Player Two" class="playerInput" id="playerTwoInput" maxlength="10">
-                <span data-mark="Circle" class="playerMark"></span>
+                <span class="P P1_svg"></span>
                 <div class="optionsInfo playerComputerToggle">
-                    Computer Controlled
+                    <span class="cpu_svg"></span>
+                    <label class="switch">
+                        <input type="checkbox" id="playerOneComputerToggle" >
+                        <span class="slider">
+                            <div data-mark="Cross" class="toggleCross"></div>
+                            <div class="toggleMidpoint"></div>
+                            <div data-mark="Circle" class="toggleCircle"></div>
+                        </span>
+                    </label>
+                </div>
+            </div>
+            <div class="playerOption playerTwo">
+                <span class="P P2_svg"></span>
+                <div class="optionsInfo playerComputerToggle">
+                    <span class="cpu_svg"></span>
                     <label class="switch">
                         <input type="checkbox" id="playerTwoComputerToggle" >
                         <span class="slider">
@@ -65,7 +72,7 @@
                 </div>
 
             </div>
-            <span id="startGame">Start</span>
+            <span id="startGame" class="start_svg"></span>
         </div>
         <div class="buttonWrapper hidden invisible" id="optionsButtons">
             <div id="closeOptions" data-mark="Cross"></div>
