@@ -686,7 +686,52 @@ span:hover {
         bottom: 10vh;
     }
 
+    #setPlayerButtons,
+    #optionsButtons {
+        height: 64vh;
+    }
+
     .boxWrapper {
         font-size: 2em;
+        height: 64vh;
+    }
+
+    .left.box,
+    .right.box {
+        height: 70vh;
+    }
+
+    .left.offscreen {
+        top: -70vh;
+    }
+
+    @keyframes offscreenTop {
+        to { top: 15vh; }
+    }
+
+    @keyframes offscreenTopReverse {
+        from { top: 15vh; }
+        to { top: -70vh;}
+    }
+
+    .right.offscreen {
+        bottom: -70vh;
+    }
+
+    @keyframes offscreenBottom {
+        to { bottom: 15vh; }
+    }
+
+    @keyframes offscreenBottomReverse {
+        from { bottom: 15vh; }
+        to { bottom: -70vh; }
+    }
+
+    .top.box {
+        top: 15vh;
+    }
+
+    .bottom.box {
+        bottom: 15vh;
     }
 }
