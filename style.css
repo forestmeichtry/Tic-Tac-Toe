@@ -75,38 +75,27 @@ body {
     background-image: url(Assets/Bungee-Start.svg);
     width: 200px;
     height: 100px;
+    transition: .4s;
 }
 
 .play_svg {
     background-image: url(Assets/Bungee-Play.svg);
     height: 100px;
     width: 9.375vw;
+    transition: .4s;
 }
 
 .options_svg {
     background-image: url(Assets/Bungee-Options.svg);
     height: 100px;
     width: 15vw;
+    transition: .4s;
 }
 
-button {
-    box-sizing: border-box;
-    height: 60px;
-    width: 180px;
-    color: var(--primaryColor);
-    font-family: 'Source Code Pro', monospace;
-    font-size: 24px;
-    font-weight: bold;
-    background-color: var(--secondaryColor);
-    border: 2px solid var(--primaryColor);
-    border-radius: 10px;
-    transition: .2s;
-}
-
-button:hover {
-    -webkit-box-shadow: 0px 0px 10px 0px rgba(var(--secondaryRGB),0.57);
-    -moz-box-shadow: 0px 0px 10px 0px rgba(var(--secondaryRGB),0.57);
-    box-shadow: 0px 0px 10px 0px rgba(var(--secondaryRGB),0.57);
+.start_svg:hover,
+.play_svg:hover,
+.options_svg:hover {
+    transform: scale(1.1);
 }
 
 .startButtonWrapper {
