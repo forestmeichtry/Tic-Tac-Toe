@@ -35,9 +35,13 @@ body {
 .title {
     z-index: 100;
     flex: auto;
+}
+
+.svg {
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
+    height: 100%;
 }
 
 #Tic_svg {
@@ -52,13 +56,6 @@ body {
     background-image: url(Assets/Bungee-Toe.svg);
 }
 
-.P {
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    height: 100%;
-}
-
 .P1_svg {
     background-image: url(Assets/Bungee-P1.svg);
 }
@@ -70,20 +67,26 @@ body {
 
 .cpu_svg {
     background-image: url(Assets/Bungee-CPU.svg);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
     width: 100px;
     height: 50px;
 }
 
 .start_svg {
     background-image: url(Assets/Bungee-Start.svg);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
     width: 200px;
     height: 100px;
+}
+
+.play_svg {
+    background-image: url(Assets/Bungee-Play.svg);
+    height: 100px;
+    width: 9.375vw;
+}
+
+.options_svg {
+    background-image: url(Assets/Bungee-Options.svg);
+    height: 100px;
+    width: 15vw;
 }
 
 button {
@@ -109,7 +112,7 @@ button:hover {
 .startButtonWrapper {
     position: absolute;
     display: flex;
-    bottom: 20vh;
+    bottom: 15vh;
     transition: .2s;
     gap: 10vh;
 }
@@ -674,18 +677,24 @@ span:hover {
         flex-direction: column;
         height: 50vh;
         width: 50vw;
-        top: 15vh;
+        top: 10vh;
     }
 
-    button {
+    .play_svg {
+        height: 60px;
         width: 120px;
-        height: 50px;
-        font-size: 16px;
+    }
+    
+    .options_svg {
+        height: 60px;
+        width: 200px;
     }
 
     .startButtonWrapper {
-        gap: 5vh;
-        bottom: 15vh;
+        flex-direction: column;
+        align-items: center;
+        gap: 3vh;
+        bottom: 10vh;
     }
 
     .boxWrapper {
