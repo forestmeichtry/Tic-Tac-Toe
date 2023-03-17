@@ -135,17 +135,17 @@ export function toggleComputerControl() {
 }
 
 export function startGame() {
-    playerOne = playerFactory(false, 'Cross');
-    playerTwo = playerFactory(false, 'Circle');
+    playerOne = playerFactory('Player 1', false, 'Cross');
+    playerTwo = playerFactory('Player 2', false, 'Circle');
 
     toggleBoardPosition();
     toggleBoxBackground(false);
     toggleDisplay(setPlayerButtons);
 }
 
-const playerFactory = (computer, mark) => {
+const playerFactory = (playerName, computer, mark) => {
     let score = 0;
-    return {score, computer, mark};
+    return {playerName, score, computer, mark};
 }
 
 function clearDisplay() {
