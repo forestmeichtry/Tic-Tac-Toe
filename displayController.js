@@ -15,6 +15,8 @@ let activePlayer;
 const gridSquares = document.querySelectorAll('.gridSquare');
 const boardPieces = document.querySelectorAll('.boardPiece');
 const setPlayerButtons = document.querySelector('#setPlayerButtons');
+const playerOneComputerToggle = document.querySelector('#playerOneComputerToggle');
+const playerTwoComputerToggle = document.querySelector('#playerTwoComputerToggle');
 const gameOverButtons = document.querySelector('#gameOverButtons');
 const startScreenElements = document.querySelectorAll('.startScreen');
 const box = document.querySelector('#gameOverBox');
@@ -67,6 +69,7 @@ function computerClick(square) {
 // Triggered on change turn if activePlayer.computer === true
 function computerMove() {
     let moveCompleted = false;
+
     while (!moveCompleted) {
         let randomIndex = Math.floor(Math.random() * gridSquares.length);
         let randomSquare = gridSquares[randomIndex];
@@ -325,6 +328,8 @@ export function returnToStart() {
     checkButtonLock(2000);
     toggleBoxBackground();
     toggleBoard();
+    playerOneComputerToggle.checked = false;
+    playerTwoComputerToggle.checked = false;
     gameOverButtons.classList.add('hidden');
     gameOverButtons.classList.add('invisible');
 
