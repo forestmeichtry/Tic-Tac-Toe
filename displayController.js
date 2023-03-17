@@ -20,6 +20,7 @@ const gameOverButtons = document.querySelector('#gameOverButtons');
 const startScreenElements = document.querySelectorAll('.startScreen');
 const box = document.querySelector('#gameOverBox');
 const optionsButtons = document.querySelector('#optionsButtons');
+const backgroundDensitySlider = document.querySelector('#backgroundDensity');
 const root = document.querySelector(':root');
 
 // Triggered on click of gridSquare elements
@@ -360,6 +361,14 @@ export function changeBackgroundDensity() {
         backgroundAnimationDelay = 150 - (400 * value);
     } else {
         backgroundAnimationDelay = 100 / value;
+    }
+}
+
+// Called on page load to set the default background density
+export function autoSetBackgroundDensity() {
+    if (window.innerWidth < 1000) {
+        backgroundDensitySlider.value = -1;
+        backgroundAnimationDelay = 550;
     }
 }
 

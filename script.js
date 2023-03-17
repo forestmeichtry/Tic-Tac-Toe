@@ -1,4 +1,4 @@
-import { animateBackground, initializeGame, toggleLightMode, playAgain, returnToStart, toggleOptions, toggleBackground, changeBackgroundDensity, startGame, toggleComputerControl } from "./displayController.js";
+import { animateBackground, initializeGame, toggleLightMode, playAgain, returnToStart, toggleOptions, toggleBackground, changeBackgroundDensity, autoSetBackgroundDensity, startGame, toggleComputerControl } from "./displayController.js";
 
 const startButton = document.querySelector('#startButton');
 startButton.addEventListener('click', initializeGame);
@@ -30,9 +30,9 @@ startGameButton.addEventListener('click', startGame);
 const computerToggle = document.querySelector('#playerTwoComputerToggle');
 computerToggle.addEventListener('click', toggleComputerControl);
 
+autoSetBackgroundDensity();
 animateBackground();
 
 // TODO:
 // Score tracking (need to use player object factories)
-// Adjust positioning of mobile elements
 // Make ai opponent (last)
