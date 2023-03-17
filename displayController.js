@@ -1,7 +1,5 @@
 import { addMark, checkForWinner, clearBoardArray, availableSquares } from "./gameBoard.js";
 
-let playerOneTurn = true;
-let computerControl = false;
 let lockGrid = false;
 let lockButtons = false;
 let boxMode = false;
@@ -13,6 +11,7 @@ let background = true;
 let backgroundAnimationDelay = 150;
 let playerOne;
 let playerTwo;
+let activePlayer;
 const gridSquares = document.querySelectorAll('.gridSquare');
 const boardPieces = document.querySelectorAll('.boardPiece');
 const setPlayerButtons = document.querySelector('#setPlayerButtons');
@@ -32,9 +31,8 @@ function playerClick() {
     }
 
     // Place the current players mark
-    let mark = playerOneTurn ? playerOne.mark : playerTwo.mark;
-    this.dataset.mark = mark;
-    addMark(mark, this.dataset.index);
+    this.dataset.mark = activePlayer.mark;
+    addMark(activePlayer.mark, this.dataset.index);
 
     // Check for a winner / tie
     let gameState = checkForWinner(this.dataset.index);
@@ -45,6 +43,39 @@ function playerClick() {
     }
 
     return true;
+}
+
+function computerClick(square) {
+    square.dataset.mark = activePlayer.mark;
+
+    square.classList.add('redFlash');
+    square.addEventListener('animationend', () => {
+        square.classList.remove('redFlash');
+    }, { once: true });
+
+    square.dataset.mark = activePlayer.mark;
+    addMark(activePlayer.mark, square.dataset.index);
+
+    let gameState = checkForWinner(square.dataset.index);
+    if (gameState) {
+        gameOver(gameState);
+    } else {
+        setTimeout(changeTurn, 1500);
+    }
+}
+
+// Triggered on change turn if activePlayer.computer === true
+function computerMove() {
+    let moveCompleted = false;
+    while (!moveCompleted) {
+        let randomIndex = Math.floor(Math.random() * gridSquares.length);
+        let randomSquare = gridSquares[randomIndex];
+
+        if (randomSquare.dataset.mark === 'empty') {
+            computerClick(randomSquare);
+            moveCompleted = true;
+        }
+    }
 }
 
 // Triggered on win / tie
@@ -62,13 +93,14 @@ function gameOver(gameState) {
             }, { once: true });
         }
     } else {
-        winner = playerOneTurn ? playerOne : playerTwo;
+        winner = activePlayer;
+        let flashColor = activePlayer.computer ? 'redFlash' : 'greenFlash';
         for (let square of gridSquares) {
             if (gameState.includes(parseInt(square.dataset.index))) {
-                square.classList.add('greenFlash');
+                square.classList.add(flashColor);
 
                 square.addEventListener('animationend', () => {
-                    square.classList.remove('greenFlash');
+                    square.classList.remove(flashColor);
                 }, { once: true });
             }
         }
@@ -105,6 +137,9 @@ function checkButtonLock(delay) {
 // Attaches event listeners to game elements 
 // Initializes the board array
 export function initializeGame() {
+    playerOne = playerFactory('Player 1', false, 'Cross');
+    playerTwo = playerFactory('Player 2', false, 'Circle');
+
     if (checkButtonLock(1000)) {
         return;
     }
@@ -127,21 +162,23 @@ export function initializeGame() {
     setTimeout(() => {
         toggleDisplay(setPlayerButtons);
     }, 1500);
-
-    lockGrid = false;
 }
 
+// Toggles computer control value of player object
 export function toggleComputerControl() {
-    computerControl = !computerControl;
+    if (this.dataset.player === 'One') {
+        playerOne.computer = !playerOne.computer;
+        console.log(playerOne.computer);
+    } else {
+        playerTwo.computer = !playerTwo.computer;
+    }
 }
 
 export function startGame() {
-    playerOne = playerFactory('Player 1', false, 'Cross');
-    playerTwo = playerFactory('Player 2', false, 'Circle');
-
     toggleBoardPosition();
     toggleBoxBackground(false);
     toggleDisplay(setPlayerButtons);
+    setTimeout(changeTurn, 1000);
 }
 
 const playerFactory = (playerName, computer, mark) => {
@@ -260,25 +297,16 @@ function toggleBoard() {
     offscreen = !offscreen;
 }
 
+// Changes active player 
+// If new active player is computer controlled triggers a computer move
 function changeTurn() {
-    playerOneTurn = !playerOneTurn;
-    if (!playerOneTurn && computerControl) {
-        computerMove();
-    }
-}
+    lockGrid = true;
+    activePlayer = activePlayer === playerOne ? playerTwo : playerOne;
 
-function computerMove() {
-    let moveCompleted = false;
-    while (!moveCompleted) {
-        let randomIndex = Math.floor(Math.random() * gridSquares.length);
-        let randomSquare = gridSquares[randomIndex];
-        console.log('Computer Move:')
-        console.log(randomSquare.dataset.mark);
-        console.log(randomSquare);
-        if (randomSquare.dataset.mark === 'empty') {
-            randomSquare.click();
-            moveCompleted = true;
-        }
+    if (activePlayer.computer) {
+        computerMove();
+    } else {
+        lockGrid = false;
     }
 }
 
@@ -289,8 +317,7 @@ export function playAgain() {
     toggleBoxBackground();
     toggleBoardPosition();
 
-    lockGrid = false;
-    changeTurn();
+    setTimeout(changeTurn, 1000);
 }
 
 // Returns to start screen from game over screen
