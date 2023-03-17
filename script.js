@@ -27,8 +27,11 @@ backgroundDensitySlider.addEventListener('input', changeBackgroundDensity);
 const startGameButton = document.querySelector('#startGame');
 startGameButton.addEventListener('click', startGame);
 
-const computerToggle = document.querySelector('#playerTwoComputerToggle');
-computerToggle.addEventListener('click', toggleComputerControl);
+const playerOneComputerToggle = document.querySelector('#playerOneComputerToggle');
+playerOneComputerToggle.addEventListener('click', toggleComputerControl);
+
+const playerTwoComputerToggle = document.querySelector('#playerTwoComputerToggle');
+playerTwoComputerToggle.addEventListener('click', toggleComputerControl);
 
 autoSetBackgroundDensity();
 animateBackground();
