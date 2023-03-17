@@ -62,7 +62,18 @@ body {
 
 .P2_svg {
     background-image: url(Assets/Bungee-P2.svg);
-    
+}
+
+.yes_svg {
+    background-image: url(Assets/Bungee-Yes.svg);
+    height: 80px;
+    width: 90px;
+}
+
+.no_svg {
+    background-image: url(Assets/Bungee-No.svg);
+    height: 80px;
+    width: 75px;
 }
 
 .cpu_svg {
@@ -75,26 +86,25 @@ body {
     background-image: url(Assets/Bungee-Start.svg);
     width: 200px;
     height: 100px;
-    transition: .4s;
 }
 
 .play_svg {
     background-image: url(Assets/Bungee-Play.svg);
     height: 100px;
     width: 9.375vw;
-    transition: .4s;
 }
 
 .options_svg {
     background-image: url(Assets/Bungee-Options.svg);
     height: 100px;
     width: 15vw;
+}
+
+.hoverScale {
     transition: .4s;
 }
 
-.start_svg:hover,
-.play_svg:hover,
-.options_svg:hover {
+.hoverScale:hover {
     transform: scale(1.1);
 }
 
@@ -263,8 +273,8 @@ body {
     width: 44vh;
     transition: 1s;
     padding: 2vh;
-    font-size: 3em;
-    font-family: 'Source Code Pro', monospace;
+    font-size: 2em;
+    font-family: 'Bungee Shade', cursive;
     color: var(--secondaryColor);
     background-color: rgba(var(--secondaryRGB), .15);
     white-space: pre-line;
