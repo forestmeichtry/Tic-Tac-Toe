@@ -31,7 +31,7 @@ function playerClick() {
     if (this.dataset.mark != 'empty' || lockGrid) {
         return;
     }
-
+    
     // Place the current players mark on the grid display
     this.dataset.mark = activePlayer.mark;
     addMark(activePlayer.mark, this.dataset.index);
@@ -41,6 +41,7 @@ function playerClick() {
     if (gameState) {
         gameOver(gameState);
     } else {
+        lockGrid = true;
         setTimeout(changeTurn, 300);
     }
 
