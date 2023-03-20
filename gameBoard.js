@@ -13,8 +13,20 @@ export function addMark(symbol, index) {
     gameBoard[index] = symbol;
 }
 
+export function removeMark(index) {
+    gameBoard[index] = ''; 
+}
+
 export function availableSquares() {
-    return gameBoard.filter(symbol => symbol = '');
+    let available = [];
+
+    for (let i = 0; i < 9; i++) {
+        if (gameBoard[i] === '') {
+            available.push(i);
+        }
+    }
+
+    return available;
 }
 
 export function checkForWinner(index) {
@@ -52,6 +64,5 @@ export function checkForWinner(index) {
     if (tieGame) {
         return 'tie';
     }
-
     return false;
 }
