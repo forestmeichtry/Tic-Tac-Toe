@@ -1,4 +1,4 @@
-import { addMark, checkForWinner, clearBoardArray, availableSquares } from "./gameBoard.js";
+import { addMark, removeMark, checkForWinner, clearBoardArray, availableSquares } from "./gameBoard.js";
 
 let lockGrid = false;
 let lockButtons = false;
@@ -32,7 +32,7 @@ function playerClick() {
         return;
     }
 
-    // Place the current players mark
+    // Place the current players mark on the grid display
     this.dataset.mark = activePlayer.mark;
     addMark(activePlayer.mark, this.dataset.index);
 
@@ -41,7 +41,7 @@ function playerClick() {
     if (gameState) {
         gameOver(gameState);
     } else {
-        changeTurn();
+        setTimeout(changeTurn, 300);
     }
 
     return true;
@@ -68,17 +68,61 @@ function computerClick(square) {
 
 // Triggered on change turn if activePlayer.computer === true
 function computerMove() {
-    let moveCompleted = false;
+    let bestMove = minMax(activePlayer.mark, 0);
+    let bestSquare = document.querySelector(`[data-index="${bestMove.index}"]`);
+    computerClick(bestSquare);
+}
 
-    while (!moveCompleted) {
-        let randomIndex = Math.floor(Math.random() * gridSquares.length);
-        let randomSquare = gridSquares[randomIndex];
 
-        if (randomSquare.dataset.mark === 'empty') {
-            computerClick(randomSquare);
-            moveCompleted = true;
+// minMax algorithm uses recursion to simulate all possible moves
+// then picks the best move assuming perfect play from both players
+function minMax(mark, depth) {
+    let available = availableSquares();
+    let maxing = mark === activePlayer.mark ? true : false;
+    let mod = maxing ? 1 : -1;
+    const bestMove = {
+        index: '',
+        score: '',
+        result: []
+    };
+
+    for (let i = 0; i < available.length; i++) {
+        addMark(mark, available[i]);
+        let result = checkForWinner(available[i]);
+        if (result === 'tie') {
+            if (bestMove.score === '' || 
+            (maxing && bestMove.score < 0) || 
+            (!maxing && bestMove.score > 0)) {
+                bestMove.index = available[i];
+                bestMove.score = 0;
+                bestMove.result = result;
+            }
+        } else if (result) {
+            let score = mod * .1 ** depth;
+            
+            if (bestMove.score === '' ||
+                (maxing && score > bestMove.score) ||
+                (!maxing && score < bestMove.score)) {
+                bestMove.index = available[i];
+                bestMove.score = score;
+                bestMove.result = result;
+            }
+        } else {
+            let otherMark = mark === 'Cross' ? 'Circle' : 'Cross';
+            let bestFound = minMax(otherMark, depth + 1);
+
+            if (bestMove.score === '' ||
+            (maxing && bestFound.score > bestMove.score) ||
+            (!maxing && bestFound.score < bestMove.score)) {
+                bestMove.index = available[i];
+                bestMove.score = bestFound.score;
+                bestMove.result = bestFound.result;
+            }
         }
+        removeMark(available[i]);
     }
+
+    return bestMove;
 }
 
 // Triggered on win / tie
@@ -171,7 +215,6 @@ export function initializeGame() {
 export function toggleComputerControl() {
     if (this.dataset.player === 'One') {
         playerOne.computer = !playerOne.computer;
-        console.log(playerOne.computer);
     } else {
         playerTwo.computer = !playerTwo.computer;
     }
